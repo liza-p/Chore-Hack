@@ -51,11 +51,11 @@ Then open in your preferred text editor:
 
 
 ## Author
-### [Liza](https://github.com/liza-p)
+### [Liza Poliachenko](https://github.com/liza-p)
 - [LinkedIn]()
 - [Portfolio]()
 - [Highlighted-Work]()
-- email: liyourlp@gmail.com
+- email: liza.poliachenko@gmail.com
 
 ### [Sierra Chapman](https://github.com/SierraChapman)
 - [LinkedIn]()
