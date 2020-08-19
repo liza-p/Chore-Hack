@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     // The repeated_days can not be null, varchar 255
     repeated_days: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   });
   Chore.associate = function (models) {
