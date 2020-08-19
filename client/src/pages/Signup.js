@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpForm from "../components/SignUp";
+import SignUpForm from "../components/Signup";
 
 
 const SignUp = () => {

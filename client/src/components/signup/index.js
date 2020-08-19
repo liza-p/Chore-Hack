@@ -4,18 +4,18 @@ import { ADD_USER } from '../../utils/actions';
 
 
 function SignUpForm() {
-    const username = userRef()
-    const password = passRef()
+    // const username = userRef()
+    // const password = passRef()
 
     const handleSubmit = event => {
-        event.preventDefault();
+    //     event.preventDefault();
 
-        signUp(username.current.value, password.current.value).then(response => {
-            username.current.value = ""
-            password.current.value = ""
+    //     signUp(username.current.value, password.current.value).then(response => {
+    //         username.current.value = ""
+    //         password.current.value = ""
 
-            dispatch({ type: ADD_USER, results: response.data })
-        })
+    //         dispatch({ type: ADD_USER, results: response.data })
+    //     })
     }
 
 
