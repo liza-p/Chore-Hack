@@ -18,6 +18,9 @@ function Navbar (){
             <li className="nav-item active">
                 <a className="nav-link" href=" ">Manage Chores</a>
             </li>
+            <li className="nav-item active">
+                <a className="nav-link"  href=" ">Log Out</a>
+            </li>
             </ul>
         </div>
         </nav>
