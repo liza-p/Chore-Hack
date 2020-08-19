@@ -1,6 +1,8 @@
 import React from 'react';
+import "./Login.css";
 
-const Login = () => {
+
+const LoginForm = () => {
     return (
     <form>
         <div className="form-group">
@@ -18,4 +20,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default LoginForm;

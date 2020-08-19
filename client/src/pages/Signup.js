@@ -1,9 +1,11 @@
 import React from "react";
-import SignUp from "../components/SignUp";
+import SignUpForm from "../components/SignUp";
 
 
 const SignUp = () => {
     return (
-        <Signup/>
+        <SignUpForm/>
     )
 }
+
+export default SignUp;

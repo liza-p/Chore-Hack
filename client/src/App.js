@@ -1,5 +1,5 @@
 import React from 'react';
-import Signup from './pages/Signup';
+import SignUp from './pages/Signup';
 import Login from './pages/Login';
 import Household from './pages/Household';
 import Dashboard from './pages/Dashboard';
@@ -16,7 +16,7 @@ function App() {
         <div>
           <Switch>
             <Redirect exact path="/" to="/login" />
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/household" component={Household} />
             <Route exact path="/dashboard" component={Dashboard} />
