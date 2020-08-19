@@ -12,19 +12,20 @@ function SignUpForm() {
     const handleSubmit = event => {
         event.preventDefault();
 
+        if (!nameRef.current.value || !emailRef.current.value || !passwordRef.current.value) {
+            console.log("missing a required field");
+            passwordRef.current.value = "";
+            return;
+        }
+
         API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
             .then(response => {
                 console.log(response);
             })
             .catch(err => {
+                passwordRef.current.value = "";
                 console.log(err);
             })
-        // signUp(username.current.value, password.current.value).then(response => {
-        //     username.current.value = ""
-        //     password.current.value = ""
-
-        //     dispatch({ type: ADD_USER, results: response.data })
-        // })
     }
 
     return (
