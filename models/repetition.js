@@ -3,12 +3,12 @@ module.exports = function(sequelize, DataTypes) {
   var Repetition = sequelize.define("Repetition", {
     //  due_date cannot be null
     due_date: {
-      type: DataTypes.Date,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     //  complete can not be null
     complete: {
-      type: DataTypes.Boolean,
+      type: DataTypes.BOOLEAN,
       allowNull: false
     }
   });

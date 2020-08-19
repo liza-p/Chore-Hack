@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     // The repeats can not be null
     repeats: {
-      type: DataTypes.Boolean,
+      type: DataTypes.BOOLEAN,
       allowNull: false
     }, 
     // The repeated_days can not be null, varchar 255
