@@ -11,6 +11,6 @@ router
 router
   .route("/:id")
   .put(choresController.update) //update a chore
-  .delete(choresController.remove); // delete a book
+  .delete(choresController.remove); // delete a chore
 
 module.exports = router;

@@ -1,12 +1,12 @@
 import React from "react";
-import Login from "../components/Login/index";
+import LoginForm from "../components/Login/index";
 
-const LoginForm = () => {
+const Login = () => {
     return (
         <div>
-            <Login />
+            <LoginForm />
         </div>
     );
 };
 
-export default LoginForm;
+export default Login;
