@@ -1,11 +1,13 @@
 import React from "react";
 import Chores from "../components/Chores";
+import { Container } from "../components/Grid";
+
 
 const Chore = () => {
     return (
-        <div>
-
-        </div>
+        <Container fluid>
+            <Chores />
+        </Container>
     );
 };
 

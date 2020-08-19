@@ -14,7 +14,7 @@ passport.use(new LocalStrategy(
   // define what happens when a user attempts to sign in
   (email, password, done) => {
     // search database for email
-    db.user.findOne({
+    db.User.findOne({
       where: { email: email }
     }).then(userMatch => {
       // if not found, return no user data
@@ -44,7 +44,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  db.user.findOne({
+  db.User.findOne({
     where: { id: id }
   }).then(user => {
     done(null, user);

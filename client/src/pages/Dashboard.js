@@ -1,11 +1,13 @@
 import React from "react";
-import Dashboard from "../components/Calendar";
+import Calendar from "../components/Calendar";
+import { Container } from "../components/Grid";
+
 
 const Dashboards = () => {
     return (
-        <div>
-
-        </div>
+        <Container fluid>
+            <Calendar />
+        </Container>
     );
 };
 

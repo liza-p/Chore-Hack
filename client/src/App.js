@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Chores from './pages/Chores';
 import './App.css';
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 
 
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/chores" component={Chores} />
           </Switch>
         </div>
+        <Footer/>
     </Router>
   );
 }
