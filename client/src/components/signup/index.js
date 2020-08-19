@@ -3,7 +3,7 @@ import "./SignUp.css";
 import { ADD_USER } from '../../utils/actions';
 
 
-function SignUp() {
+function SignUpForm() {
     const username = userRef()
     const password = passRef()
 
@@ -40,4 +40,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignUpForm;
