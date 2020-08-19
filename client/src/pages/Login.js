@@ -1,11 +1,13 @@
 import React from "react";
 import LoginForm from "../components/Login/index";
+import { Container } from "../components/Grid";
+
 
 const Login = () => {
     return (
-        <div>
+        <Container fluid>
             <LoginForm />
-        </div>
+        </Container>
     );
 };
 

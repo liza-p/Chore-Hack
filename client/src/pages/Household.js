@@ -1,11 +1,13 @@
 import React from "react";
-import Household from "../components/Members";
+import Members from "../components/Members";
+import { Container } from "../components/Grid";
+
 
 const Households = () => {
     return (
-        <div>
-            
-        </div>
+        <Container fluid>
+            <Members />
+        </Container>
     );
 };
 
