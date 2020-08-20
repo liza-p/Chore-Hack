@@ -11,8 +11,8 @@ var lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() -
 const Calendar = () => {
           return(
             <InfiniteCalendar
-                width={400}
-                height={230}
+                width={1400}
+                height={350}
                 selected={today}
                 disabledDays={[0,6]}
                 minDate={lastWeek}
