@@ -40,6 +40,7 @@ module.exports = {
     },
 
     remove(req, res) {
+      
         db.Chore.destroy({
           where: {_id: req.params.id}})
             .then(() => res.json({}))

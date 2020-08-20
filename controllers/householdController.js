@@ -14,20 +14,35 @@ module.exports = {
             });
     },
 
-    findOne(req, res) {
-        db.Household.findOne({ where: {_id: req.params.id}})
-            .then(() => res.json({}))
-            .catch(err => console.log(err))
+    getInviteCode(req, res) {
+        db.Household.findOne({ where: {id: req.query.id}})
+            .then((data) => res.json(data.invite_code))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     },
-    update(req, res) {
-      db.Household.update({
-        name: req.body.name,
-        invite_code: req.body.invite_code
-      }, {
-        where: {_id: req.params.id}
+    joinHousehold(req, res) {
+      console.log("Invite code",req.query.invite)
+      console.log("User ID", req.query.userId);
+      db.Household.findOne({where: {invite_code: req.query.invite}})
+      .then(function(household){
+        if ( ! household){
+          console.log("Incorect Invite Code")
+          res.status(401).end();
+        } 
+        return db.User.update({
+          HouseholdId: household.id,
+        }, {
+          where: {id: req.query.userId}
+        })
       })
-          .then(() => res.json({}))
-          .catch(err => console.log(err))
+          .then((user) => {res.status(200).end();})
+          .catch(function(err) {
+            console.log(err);
+            res.status(500).end();
+          });
   }
 
 }
+
