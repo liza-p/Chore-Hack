@@ -10,8 +10,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
         },
         invite_code: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         },
     });
     Household.associate = function (models) {
