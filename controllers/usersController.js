@@ -2,10 +2,16 @@ const db = require("../models")
 
 module.exports = {
   signup(req, res) {
-    db.User.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
+    db.Household.create({
+      name: req.body.name + "'s Household" 
+    })
+    .then(function(newHousehold){
+      return db.User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        HouseholdId: newHousehold.id
+      });
     })
     .then(function() {
       res.redirect(307, "/api/users/login");
