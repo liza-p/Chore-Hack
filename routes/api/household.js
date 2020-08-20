@@ -3,7 +3,7 @@ const householdController = require("../../controllers/householdController");
 
 
 // matches with "/api/household/users"
-router.route("/users").get(householdController.findAll);
+router.route("/users").get(householdController.findMembers);
 // matches with "/api/household/invite"
 router.route("/invite").get(householdController.findOne);
 // matches with "/api/household/join"
