@@ -2,12 +2,16 @@ const db = require("../models")
 
 module.exports = {
 
-    findAll(req, res) {
-        db.Household.findAll()
+    findMembers(req, res) {
+      console.log(req.query);
+        db.User.findAll({ where: {HouseholdId: req.query.id}})
             .then(data => res.json(
-              data.map((row) => row.dataValues)
+              data.map((row) => row.dataValues.name)
             ))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     },
 
     findOne(req, res) {
