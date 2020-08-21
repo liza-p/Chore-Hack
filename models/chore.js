@@ -15,6 +15,12 @@ module.exports = function(sequelize, DataTypes) {
     repeated_days: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    // changes to false when the user deletes the core
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     }
   });
   Chore.associate = function (models) {
