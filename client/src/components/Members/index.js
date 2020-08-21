@@ -1,12 +1,13 @@
 import React from 'react';
 import "./style.css";
-import { Table } from "react-bootstrap";
+import { Table, Modal } from "react-bootstrap";
+import App from "../Invite/modal";
 
 const Members = () => {
     return (
-        <div className="memberContainer">
-            <div className="row">
-                <div class="col-8">
+        <div className="d-flex justify-content-center memberContainer">
+            {/* <div className="row"> */}
+                {/* <div className="col-8"> */}
                     <Table striped bordered hover size="sm">
                         <thead>
                             <tr>
@@ -18,16 +19,17 @@ const Members = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
+                                <td>Red</td>
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 {/* <td>@mdo</td> */}
                             </tr>
                         </tbody>
                     </Table>
+                    <App/>
                 </div>
-            </div>
-        </div>
+        //     </div>
+        // </div>
     );
 };
 

@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <>
         <div
-          className="d-flex align-items-center justify-content-center"
+          className="modalContainer"
           style={{ height: "100vh" }}
         >
           <Button variant="primary" onClick={this.openModal}>
