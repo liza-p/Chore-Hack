@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const householdController = require("../../controllers/householdController");
 
-
+// matches with "/api/household"
+router.route("/").get(householdController.getInfo);
 // matches with "/api/household/users"
 router.route("/users").get(householdController.findMembers);
 // matches with "/api/household/invite-code"
