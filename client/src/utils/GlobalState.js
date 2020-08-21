@@ -46,41 +46,63 @@ const reducer = (state, action) => {
         case UPDATE_CHORE:
             return {
                 ...state,
-                chore: action.chore
+                chores: state.chores.map(chore => {
+                    return (chore.id !== action.id ? chore : action.chore);
+                })
             };
 
         case ADD_CHORE:
             return {
                 ...state,
-                chores: [...state.chores, action.chores],
+                chores: [...state.chores, action.chore],
             };
             
         case REMOVE_CHORE:
             return {
                 ...state,
-                id: (chores.id === action.id ? " " : chores.id)
+                chores: state.chores.filter(chore => {
+                    return chore.id !== action.id;
+                })
             };
-
 
         case UPDATE_REPETITIONS:
             return {
-                ...state
+                ...state,
+                repetitions: action.repetitions
             };
 
         case COMPLETE_REPETITION:
             return {
-                ...state
+                ...state,
+                repetitions: state.repetitions.map(repetition => {
+                    return (repetition.id !== action.id ? repetition : {...repetition, complete:true});
+                })
             };
 
         case UNDO_REPETITION:
             return {
-                ...state
+                ...state,
+                repetitions: state.repetitions.map(repetition => {
+                    return (repetition.id !== action.id ? repetition : {...repetition, complete:false});
+                })
             }
+
+            default:
+                return state;
+            
     }
 }
 
 const ChoreProvider = ({ value = [], ...props }) => {
-    const [state, dispatch] = userReducer(reducer, {
+    const [state, dispatch] = useReducer(reducer, {
+        
+    });
 
-    })
-}
+    return <Provider value={[state, dispatch]} {...props} />
+};
+
+const useChoreContext = () => {
+    return useContext(ChoreContext);
+};
+
+export { ChoreProvider, useChoreContext };
