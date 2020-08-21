@@ -5,11 +5,7 @@ const choresController = require("../../controllers/choresController");
 router
   .route("/")
   .get(choresController.findAll) // get all chores
-  .post(choresController.create); // create a chore
-
-// matches with /api/chores/:id
-router
-  .route("/:id")
+  .post(choresController.create) // create a chore
   .put(choresController.update) //update a chore
   .delete(choresController.remove); // delete a chore
 
