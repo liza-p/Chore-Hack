@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
+import { Button } from 'react-bootstrap';
+
 
 function Navbar({ username, refreshUsername }) {
     const [redirect, setRedirect] = useState();
@@ -46,9 +48,9 @@ function Navbar({ username, refreshUsername }) {
             {username ? 
             <span>
                 <span className="mr-2">Logged in as {username}</span>
-                <button onClick={handleLogout}>Log Out</button> 
-            </span> :
-            <Link to="/login"><button>Sign in</button></Link>
+                <Button variant="primary" onClick={handleLogout}>Log Out</Button> 
+                </span> :
+            <Link to="/login"><Button variant="primary">Sign in</Button></Link>
             }
         </nav>
     )
