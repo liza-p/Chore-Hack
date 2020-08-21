@@ -95,7 +95,10 @@ const reducer = (state, action) => {
 
 const ChoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
-        
+        members: [],
+        chores: [],
+        repetitions: []
+
     });
 
     return <Provider value={[state, dispatch]} {...props} />
