@@ -1,46 +1,35 @@
-// import React from 'react';
-import React, {Component, state} from 'react'
-import {Bar} from 'react-chartjs-2';
+import {Pie} from 'react-chartjs-2';
+import React, {Component} from 'react'
+import "./style.css"
 
 class Chart extends Component {
 
     constructor(props) {
-    super(props)
-    this.state = {
-        labels: ['January', 'February', 'March',
-                'April', 'May'],
-        datasets: [
-            {
-            label: 'Rainfall',
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgba(0,0,0,1)',
-            borderWidth: 2,
-            data: [65, 59, 80, 81, 56]
-        }]
+        super(props)
+        this.state = {
+            labels: ['Household', 'Household', 'Household', 'Household', 'Household', 'Household', 'Household'],
+            datasets: [{
+                data: [30, 10, 10, 20, 10, 10, 10],
+                backgroundColor: ['red', 'orange', 'yellow', 'blue', 'green', 'indigo', 'purple']
+            }]
+        }
     }
-}
 
-// export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Bar
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Household Chores Completed',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-    );
-    }
+    render() {
+        return (
+            <div className="pie">
+                <figcaption id="Chores"><strong>Users Completed Chores</strong></figcaption>
+                <Pie
+                    data={{
+                        labels: this.state.labels,
+                        datasets: this.state.datasets
+                    }}
+                    height = { 250 }
+                />
+                <br />
+            </div>
+        )
+        }
 }
 
 export default Chart;
