@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./Login.css";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 
 const LoginForm = ({ refreshUsername }) => {
@@ -9,12 +10,15 @@ const LoginForm = ({ refreshUsername }) => {
     const passwordRef = useRef();
 
     const [redirect, setRedirect] = useState();
+    const [error, setError] = useState(null);
 
     const handleSubmit = event => {
         event.preventDefault();
+        // clear error with every new submit attempt
+        setError(null);
 
         if (!emailRef.current.value || !passwordRef.current.value) {
-            console.log("missing a required field");
+            setError("Missing a required field.");
             passwordRef.current.value = "";
             return;
         }
@@ -33,7 +37,8 @@ const LoginForm = ({ refreshUsername }) => {
 
     return (
         redirect ? <Redirect to={redirect} /> :
-        <form>
+        <form className="mt-3">
+            <ErrorMessage message={error} />
             <div className="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ref={emailRef} />
