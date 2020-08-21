@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
+import { Button } from 'react-bootstrap';
+
 
 function Navbar({ username, refreshUsername }) {
     const [redirect, setRedirect] = useState();
@@ -24,7 +26,7 @@ function Navbar({ username, refreshUsername }) {
         redirect ? <Redirect to={redirect} /> :
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link class="navbar-brand" to="/">
-                <img src="../img/project3.png" style={{ width: "30px", height: "30px" }} className="d-inline-block align-top" alt="" />
+                <img src="../img/project3.png" style={{ width: "45px", height: "45px", top: "6px" }} className="d-inline-block" alt="" />
                 Chore Hack
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,9 +48,9 @@ function Navbar({ username, refreshUsername }) {
             {username ? 
             <span>
                 <span className="mr-2">Logged in as {username}</span>
-                <button onClick={handleLogout}>Log Out</button> 
-            </span> :
-            <Link to="/login"><button>Sign in</button></Link>
+                <Button variant="primary" onClick={handleLogout}>Log Out</Button> 
+                </span> :
+            <Link to="/login"><Button variant="primary">Sign in</Button></Link>
             }
         </nav>
     )
