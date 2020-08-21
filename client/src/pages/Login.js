@@ -2,10 +2,10 @@ import React from "react";
 import LoginForm from "../components/Login";
 import { Container } from "../components/Grid";
 
-const Login = () => {
+const Login = props => {
     return (
         <Container fluid>
-            <LoginForm />
+            <LoginForm {...props} />
         </Container>
     );
 };

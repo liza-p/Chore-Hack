@@ -1,13 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
 import { ADD_USER } from '../../utils/actions';
 import API from "../../utils/API";
 
 
-function SignUpForm() {
+function SignUpForm({ refreshUsername }) {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+
+    const [redirect, setRedirect] = useState();
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -21,6 +24,8 @@ function SignUpForm() {
         API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
             .then(response => {
                 console.log(response);
+                refreshUsername();
+                setRedirect("/household");
             })
             .catch(err => {
                 passwordRef.current.value = "";
@@ -29,6 +34,7 @@ function SignUpForm() {
     }
 
     return (
+        redirect ? <Redirect to={redirect} /> :
         <form>
             <div className="form-group">
                 <label htmlFor="inputName">Display Name</label>
@@ -50,7 +56,6 @@ function SignUpForm() {
             </div>
             <button type="button ml-2" className="btn btn-success" onClick={event => handleSubmit(event)}>Submit</button>
         </form>
-
     );
 }
 

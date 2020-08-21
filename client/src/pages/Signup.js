@@ -3,10 +3,10 @@ import SignUpForm from "../components/SignUp";
 import { Container } from "../components/Grid";
 
 
-const SignUp = () => {
+const SignUp = props => {
     return (
     <Container fluid>
-        <SignUpForm/>
+        <SignUpForm {...props} />
     </Container>
     )
 }

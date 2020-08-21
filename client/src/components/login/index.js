@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import "./Login.css";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
 
+const LoginForm = ({ refreshUsername }) => {
+    const emailRef = useRef();
+    const passwordRef = useRef();
 
-const LoginForm = () => {
+    const [redirect, setRedirect] = useState();
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        if (!emailRef.current.value || !passwordRef.current.value) {
+            console.log("missing a required field");
+            passwordRef.current.value = "";
+            return;
+        }
+
+        API.login(emailRef.current.value, passwordRef.current.value)
+            .then(response => {
+                console.log(response);
+                refreshUsername();
+                setRedirect("/dashboard");
+            })
+            .catch(err => {
+                passwordRef.current.value = "";
+                console.log(err);
+            })
+    }
+
     return (
-    <form>
-        <div className="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-        </div>
-        <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" />
-        </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-        <br></br>
-        <Link to="/signup">New user? Sign up</Link>
-    </form>
-
+        redirect ? <Redirect to={redirect} /> :
+        <form>
+            <div className="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ref={emailRef} />
+            </div>
+            <div className="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" className="form-control" id="exampleInputPassword1" ref={passwordRef} />
+            </div>
+            <button className="btn btn-primary" onClick={event => handleSubmit(event)}>Login</button>
+            <br></br>
+            <Link to="/signup">New user? Sign up</Link>
+        </form>
     )
 }
 

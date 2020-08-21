@@ -33,4 +33,18 @@ module.exports = {
     req.logout();
     res.redirect("/");
   },
+  getUsername(req, res) { // for getting the name of the currently logged in user
+    if (req.user) {
+      db.User.findOne({where: {id: req.user.id}})
+        .then(user => {
+          res.json(user.name); // return the user's name
+        })
+        .catch(err => {
+          console.log(err);
+          res.json(""); // the user wasn't found
+        });
+    } else {
+      res.json(""); // no user is logged in
+    }
+  }
 }
