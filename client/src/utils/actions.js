@@ -11,7 +11,7 @@ export const UPDATE_REPETITIONS = "UPDATE_REPETITIONS";
 export const COMPLETE_REPETITION = "COMPLETE_REPETITION"; // mark given repetition as complete
 export const UNDO_REPETITION = "UNDO_REPETITION"; // mark given repetition as incomplete
 
-/* 
+/* x
 // Example of global state
 const GlobalState = {
   username: "Sierra", // the display name of currently logged in user

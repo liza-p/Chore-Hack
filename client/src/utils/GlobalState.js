@@ -1,61 +1,108 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
-ADD_USER,
-UPDATE_USER,
-REMOVE_USER,
-ADD_HOUSEHOLD,
-UPDATE_HOUSEHOLD,
-REMOVE_HOUSEHOLD,
-ADD_CHORE,
-UPDATE_CHORE,
-REMOVE_CHORE
+    UPDATE_USERNAME,
+    UPDATE_HOUSEHOLD,
+    UPDATE_MEMBERS,
+    UPDATE_CHORES,
+    UPDATE_CHORE,
+    ADD_CHORE,
+    REMOVE_CHORE,
+    UPDATE_REPETITIONS,
+    COMPLETE_REPETITION,
+    UNDO_REPETITION
+
 } from './actions';
+import API from "./API";
+
+const ChoreContext = createContext();
+const { Provider } = ChoreContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case ADD_USER:
+        case UPDATE_USERNAME:            
             return {
-                ...state
-            };
+                ...state,
+                username: action.username
+            }
         
-        case UPDATE_USER:
-            return {
-                ...state
-            };
-
-        case REMOVE_USER:
-            return {
-                ...state
-            };
-        
-        case ADD_HOUSEHOLD:
-            return {
-                ...state
-            };
-
         case UPDATE_HOUSEHOLD:
             return {
-                ...state
+                ...state,
+                household: action.household
             };
 
-        case REMOVE_HOUSEHOLD:
+        case UPDATE_MEMBERS:
             return {
-                ...state
+                ...state,
+                members: action.members
+            };
+        
+        case UPDATE_CHORES:
+            return {
+                ...state,
+                chores: action.chores
+            };
+        
+        case UPDATE_CHORE:
+            return {
+                ...state,
+                chores: state.chores.map(chore => {
+                    return (chore.id !== action.id ? chore : action.chore);
+                })
             };
 
         case ADD_CHORE:
             return {
-                ...state
+                ...state,
+                chores: [...state.chores, action.chore],
             };
-
-        case UPDATE_CHORE:
-            return {
-                ...state
-            };
-
+            
         case REMOVE_CHORE:
             return {
-                ...state
+                ...state,
+                chores: state.chores.filter(chore => {
+                    return chore.id !== action.id;
+                })
+            };
+
+        case UPDATE_REPETITIONS:
+            return {
+                ...state,
+                repetitions: action.repetitions
+            };
+
+        case COMPLETE_REPETITION:
+            return {
+                ...state,
+                repetitions: state.repetitions.map(repetition => {
+                    return (repetition.id !== action.id ? repetition : {...repetition, complete:true});
+                })
+            };
+
+        case UNDO_REPETITION:
+            return {
+                ...state,
+                repetitions: state.repetitions.map(repetition => {
+                    return (repetition.id !== action.id ? repetition : {...repetition, complete:false});
+                })
             }
+
+            default:
+                return state;
+            
     }
 }
+
+const ChoreProvider = ({ value = [], ...props }) => {
+    const [state, dispatch] = useReducer(reducer, {
+        
+    });
+
+    return <Provider value={[state, dispatch]} {...props} />
+};
+
+const useChoreContext = () => {
+    return useContext(ChoreContext);
+};
+
+export { ChoreProvider, useChoreContext };

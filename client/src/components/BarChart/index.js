@@ -1,6 +1,6 @@
 // import React from 'react';
-import React, {Component, state} from 'react'
 import {Bar} from 'react-chartjs-2';
+import React, {Component, state} from 'react'
 import './style.css';
 
 class BarChart extends Component {
