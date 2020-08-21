@@ -4,4 +4,7 @@ export default {
   signup: function(name, email, password) {
     return axios.post("/api/users/signup", { name, email, password });
   },
+  logout: function() {
+    return axios.get("/api/users/logout");
+  },
 };

@@ -5,6 +5,6 @@ const passport = require("../../config/passport");
 // authentication routes
 router.post("/signup", usersController.signup);
 router.post("/login", passport.authenticate("local"), usersController.login);
-router.post("/logout", usersController.logout);
+router.get("/logout", usersController.logout);
 
 module.exports = router;
