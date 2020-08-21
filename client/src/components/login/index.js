@@ -4,7 +4,7 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
-const LoginForm = () => {
+const LoginForm = ({ refreshUsername }) => {
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -22,6 +22,7 @@ const LoginForm = () => {
         API.login(emailRef.current.value, passwordRef.current.value)
             .then(response => {
                 console.log(response);
+                refreshUsername();
                 setRedirect("/dashboard");
             })
             .catch(err => {

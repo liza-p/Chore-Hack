@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
 
-function Navbar() {
+function Navbar({ username, refreshUsername }) {
     const [redirect, setRedirect] = useState();
 
     const handleLogout = () => {
         console.log(redirect);
         API.logout()
             .then(() => {
+                refreshUsername(); // update login status
                 setRedirect("/login");
             })
             .catch(err => console.log(err));
@@ -42,7 +43,13 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <button onClick={handleLogout}>Log Out</button>
+            {username ? 
+            <span>
+                <span className="mr-2">Logged in as {username}</span>
+                <button onClick={handleLogout}>Log Out</button> 
+            </span> :
+            <Link to="/login"><button>Sign in</button></Link>
+            }
         </nav>
     )
 }

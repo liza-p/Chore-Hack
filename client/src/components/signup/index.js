@@ -5,7 +5,7 @@ import { ADD_USER } from '../../utils/actions';
 import API from "../../utils/API";
 
 
-function SignUpForm() {
+function SignUpForm({ refreshUsername }) {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -24,6 +24,7 @@ function SignUpForm() {
         API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
             .then(response => {
                 console.log(response);
+                refreshUsername();
                 setRedirect("/household");
             })
             .catch(err => {
