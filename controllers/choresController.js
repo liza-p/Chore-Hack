@@ -7,10 +7,17 @@ module.exports = {
             .then(data => res.json(
               data.map((row) => row.dataValues)
             ))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     },
 
     create(req, res) {
+      console.log('body', req.body);
+      console.log('user', req.user);
+      res.status(200).json({});
+      return;
       db.Chore.create({
         chore: req.body.chore,
         repeats: req.body.repeats,
@@ -33,17 +40,24 @@ module.exports = {
           repeats: req.body.repeats,
           repeated_days: req.body.repeated_days,
         }, {
-          where: {_id: req.params.id}
+          where: {id: req.query.id}
         })
             .then(() => res.json({}))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     },
 
     remove(req, res) {
+      
         db.Chore.destroy({
-          where: {_id: req.params.id}})
+          where: {id: req.query.id}})
             .then(() => res.json({}))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     }
 
 

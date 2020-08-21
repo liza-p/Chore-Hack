@@ -4,9 +4,9 @@ const householdController = require("../../controllers/householdController");
 
 // matches with "/api/household/users"
 router.route("/users").get(householdController.findMembers);
-// matches with "/api/household/invite"
-router.route("/invite").get(householdController.findOne);
+// matches with "/api/household/invite-code"
+router.route("/invite-code").get(householdController.getInviteCode);
 // matches with "/api/household/join"
-router.route("/join").put(householdController.update);
+router.route("/join").get(householdController.joinHousehold);
 
 module.exports = router;
