@@ -7,7 +7,10 @@ module.exports = {
             .then(data => res.json(
               data.map((row) => row.dataValues)
             ))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     },
 
     update(req, res) {
@@ -15,10 +18,13 @@ module.exports = {
           due_date: req.body.due_date,
           complete: req.body.complete,
         }, {
-          where: {_id: req.params.id}
+          where: {id: req.query.id}
         })
             .then(() => res.json({}))
-            .catch(err => console.log(err))
+            .catch(function(err) {
+              console.log(err);
+              res.status(500).end();
+            });
     }
 
 }
