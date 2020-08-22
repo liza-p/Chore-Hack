@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
 import { ADD_USER } from '../../utils/actions';
+import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 
 
@@ -11,23 +12,34 @@ function SignUpForm({ refreshUsername }) {
     const passwordRef = useRef();
 
     const [redirect, setRedirect] = useState();
+    const [error, setError] = useState(null);
 
     const handleSubmit = event => {
         event.preventDefault();
 
         if (!nameRef.current.value || !emailRef.current.value || !passwordRef.current.value) {
-            console.log("missing a required field");
+            setError("Missing a required field.");
             passwordRef.current.value = "";
             return;
         }
 
         API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
             .then(response => {
+                setError(null);
                 console.log(response);
                 refreshUsername();
                 setRedirect("/household");
             })
             .catch(err => {
+                if (!err.response) {
+                    setError("Unable to connect to the server.");
+                } else if (err.response.data === "SequelizeValidationError") {
+                    setError("Please enter a valid email address.");
+                } else if (err.response.data === "SequelizeUniqueConstraintError") {
+                    setError("This email address is already associated with an account.");
+                } else {
+                    setError("An unknown error occurred.");
+                }
                 passwordRef.current.value = "";
                 console.log(err);
             })
@@ -35,7 +47,8 @@ function SignUpForm({ refreshUsername }) {
 
     return (
         redirect ? <Redirect to={redirect} /> :
-        <form>
+        <form className="mt-3">
+            <ErrorMessage message={error} />
             <div className="form-group">
                 <label htmlFor="inputName">Display Name</label>
                 <input type="text" className="form-control" id="inputName" aria-describedby="nameHelp" ref={nameRef} />
