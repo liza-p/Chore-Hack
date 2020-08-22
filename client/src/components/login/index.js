@@ -14,8 +14,6 @@ const LoginForm = ({ refreshUsername }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        // clear error with every new submit attempt
-        setError(null);
 
         if (!emailRef.current.value || !passwordRef.current.value) {
             setError("Missing a required field.");
@@ -25,11 +23,20 @@ const LoginForm = ({ refreshUsername }) => {
 
         API.login(emailRef.current.value, passwordRef.current.value)
             .then(response => {
+                setError(null);
                 console.log(response);
                 refreshUsername();
                 setRedirect("/dashboard");
             })
             .catch(err => {
+                // show error message depending on error type
+                if (!err.response) {
+                    setError("Unable to connect to the server.");
+                } else if (err.response.status === 401) {
+                    setError("Invalid email or password.");
+                } else {
+                    setError("An unknown error occurred.");
+                }
                 passwordRef.current.value = "";
                 console.log(err);
             })
