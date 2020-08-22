@@ -12,5 +12,8 @@ export default {
   },
   getUsername: function() {
     return axios.get("/api/users/name");
+  }, 
+  getMembers: function(){
+    return axios.get("/api/household/users");
   }
 };
