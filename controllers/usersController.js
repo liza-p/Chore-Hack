@@ -18,7 +18,7 @@ module.exports = {
     })
     .catch(function(err) {
       console.log(err);
-      res.status(401).end();
+      res.status(401).send(err.name);
     });
   },
   login(req, res) {
