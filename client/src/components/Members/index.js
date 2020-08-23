@@ -22,9 +22,9 @@ const Members = () => {
                 <tbody>
                     {state.members.map(member => {
                         return (
-                            <tr key={member}>
+                            <tr key={member.id}>
                                 <td>Red</td>
-                                <td>{member}</td>
+                                <td>{member.name}</td>
                                 <td>OFF</td>
                                 {/* <td>@mdo</td> */}
                             </tr>
