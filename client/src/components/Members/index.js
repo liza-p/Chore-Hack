@@ -1,6 +1,6 @@
 import React from 'react';
 import "./style.css";
-import { Table, Modal } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import App from "../Invite/modal";
 import { useChoreContext } from "../../utils/GlobalState"
 

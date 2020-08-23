@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form } from 'react-bootstrap';
 
 
 
 function HouseholdBtn () {
-  const [value, setValue] = useState([1, 3]);
-
-  const handleChange = (val) => setValue(val);
 
   return (
     <Form>
-    {['checkbox', 'checkbox', 'checkbox', 'checkbox'].map((type) => (
+    {['chore-1', 'chore-2', 'chore-3', 'chore-4'].map((type) => (
         <div key={`Household-${type}`} className="mb-3">
         <Form.Check 
-            type={type}
+            type= 'checkbox'
             id={`Household-${type}`}
             label={`Household ${type}`}
         />

@@ -12,7 +12,6 @@ import {
     UNDO_REPETITION
 
 } from './actions';
-import API from "./API";
 
 const ChoreContext = createContext();
 const { Provider } = ChoreContext;

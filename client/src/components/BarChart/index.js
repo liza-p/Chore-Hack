@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {HorizontalBar} from 'react-chartjs-2';
 import "./style.css"
 
@@ -23,7 +23,7 @@ const data = {
 
   return (
    
-      <div style={{ height: 500, width: 800}}>
+      <div style={{ height: 500, width: 800, margin: 'auto'}}>
         <h5>Percentace of Chores Completed Over the Last Week</h5>
         <HorizontalBar data={data} />
       </div>
