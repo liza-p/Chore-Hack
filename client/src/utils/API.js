@@ -15,5 +15,8 @@ export default {
   }, 
   getMembers: function(){
     return axios.get("/api/household/users");
+  },
+  createChore: function(chore,repeats, repeated_days, UserId){
+    return axios.post("/api/chores", {chore,repeats, repeated_days, UserId});
   }
 };
