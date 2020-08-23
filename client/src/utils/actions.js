@@ -11,17 +11,17 @@ export const UPDATE_REPETITIONS = "UPDATE_REPETITIONS";
 export const COMPLETE_REPETITION = "COMPLETE_REPETITION"; // mark given repetition as complete
 export const UNDO_REPETITION = "UNDO_REPETITION"; // mark given repetition as incomplete
 
-/* x
+/*
 // Example of global state
 const GlobalState = {
   username: "Sierra", // the display name of currently logged in user
   household: "Team 1", // name of current user's household
   inviteCode: "ABCDEFG", // this household's invite code
   members: [
-    "Ayla",
-    "Hannah",
-    "Liza",
-    "Sierra",
+    { id: 1, name: "Ayla"},
+    { id: 7, name: "Hannah"},
+    { id: 2, name: "Liza"},
+    { id: 10, name: "Sierra"},
   ], // display name's of current user's household members
   chores: [
     {
@@ -29,14 +29,14 @@ const GlobalState = {
       name: "build a website",
       repeats: false,
       dueOn: "08/28/20",
-      assignedTo: "Ayla",
+      assignedTo: 1, // member id 1: Ayla
     },
     {
       id: 2, // from the database
       name: "group meeting",
       repeats: true,
       dueOn: [true, true, true, true, true, false, false],
-      assignedTo: "Liza",
+      assignedTo: 2,
     }
   ],
   repetitions: [ // ordered by due date
@@ -44,14 +44,14 @@ const GlobalState = {
       id: 6, // from the database
       name: "group meeting",
       dueOn: "08/21/20",
-      assignedTo: "Liza",
+      assignedTo: 2,
       complete: true,
     }, // an upcoming non-repeated chore
     {
       id: 1, // from the database
       name: "build a website",
       dueOn: "08/28/20",
-      assignedTo: "Ayla",
+      assignedTo: 1,
       complete: false,
     }, // the upcoming repetition of a repeated chore
   ],

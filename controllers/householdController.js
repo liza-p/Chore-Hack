@@ -17,7 +17,7 @@ module.exports = {
         return res.json({
           name: household.name,
           invite_code: household.invite_code,
-          members: household.Users.map(user => user.name)
+          members: household.Users.map(user => ({ id: user.id, name: user.name }))
         });
       })
       .catch(function (err) {
