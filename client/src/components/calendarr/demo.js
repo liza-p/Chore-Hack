@@ -82,9 +82,28 @@ const appointments = [
   }, {
     id: 8,
     title: 'Watercolor Workshop',
-    startDate: new Date(2018, 6, 9, 11, 0),
-    endDate: new Date(2018, 6, 9, 12, 0),
+    startDate: new Date(2018, 7, 9, 11, 0),
+    endDate: new Date(2018, 7, 9, 12, 0),
     ownerId: 3,
+  }, {
+    id: 9,
+    title: 'August Event',
+    startDate: new Date(2020, 7, 23, 11, 0),
+    endDate: new Date(2020, 7, 23, 12, 0),
+    ownerId: 3,
+  },
+  {
+    id: 10,
+    title: 'September Event',
+    startDate: new Date(2020, 8, 23, 11, 0),
+    endDate: new Date(2020, 8, 23, 12, 0),
+    ownerId: 5,
+  },{
+    id: 11,
+    title: 'January Event',
+    startDate: new Date(2021, 0, 23, 11, 0),
+    endDate: new Date(2021, 0, 23, 12, 0),
+    ownerId: 5,
   },
 ];
 
@@ -255,9 +274,9 @@ const CellBase = React.memo(({
       tabIndex={0}
       className={classNames({
         [classes.cell]: true,
-        [classes.rainBack]: iconId === 0,
-        [classes.sunBack]: iconId === 1,
-        [classes.cloudBack]: iconId === 2,
+        // [classes.rainBack]: iconId === 0,
+        // [classes.sunBack]: iconId === 1,
+        // [classes.cloudBack]: iconId === 2,
         [classes.opacity]: otherMonth,
       })}
     >
