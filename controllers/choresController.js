@@ -23,7 +23,7 @@ module.exports = {
     db.Chore.create({
       chore: req.body.chore,
       repeats: req.body.repeats,
-      repeated_days: req.body.repeated_days,
+      repeated_days: req.body.repeats ? JSON.stringify(req.body.repeated_days) : null,
       HouseholdId: req.user.HouseholdId,
       UserId: req.body.UserId,
     })
