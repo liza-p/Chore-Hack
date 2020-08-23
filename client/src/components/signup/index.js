@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
-import { ADD_USER } from '../../utils/actions';
+// import { ADD_USER } from '../../utils/actions';
 import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 

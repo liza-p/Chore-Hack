@@ -14,8 +14,8 @@ import {
   UPDATE_USERNAME,
   UPDATE_HOUSEHOLD,
   UPDATE_MEMBERS,
-  UPDATE_CHORES,
-  UPDATE_REPETITIONS,
+  // UPDATE_CHORES,
+  // UPDATE_REPETITIONS,
 } from './utils/actions';
 
 function App() {

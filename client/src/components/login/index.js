@@ -47,11 +47,11 @@ const LoginForm = ({ refreshUserData }) => {
         <form className="mt-3">
             <ErrorMessage message={error} />
             <div className="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label htmlFor="exampleInputEmail1">Email address</label>
                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ref={emailRef} />
             </div>
             <div className="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="exampleInputPassword1" ref={passwordRef} />
             </div>
             <button className="btn btn-primary" onClick={event => handleSubmit(event)}>Login</button>
