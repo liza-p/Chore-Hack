@@ -25,7 +25,7 @@ function Navbar({ username, refreshUsername }) {
     return (
         redirect ? <Redirect to={redirect} /> :
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link class="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/">
                 <img src="../img/project3.png" style={{ width: "45px", height: "45px", top: "6px" }} className="d-inline-block" alt="" />
                 Chore Hack
             </Link>

@@ -1,47 +1,37 @@
-// import React from 'react';
-import {Bar} from 'react-chartjs-2';
-import React, {Component, state} from 'react'
-import './style.css';
+import React, { Component } from 'react';
+import {HorizontalBar} from 'react-chartjs-2';
+import "./style.css"
 
-class BarChart extends Component {
+function BarChart () {
 
-    constructor(props) {
-    super(props)
-    this.state = {
-        labels: ['January', 'February', 'March',
-                'April', 'May'],
-        datasets: [
-            {
-            label: 'Rainfall',
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgba(0,0,0,1)',
-            borderWidth: 2,
-            data: [65, 59, 80, 81, 56]
-        }]
+const data = {
+  labels: ['Sierra', 'Liza', 'Hannah', 'Ayla'],
+  datasets: [
+    {
+      label: 'Chores Completed',
+      backgroundColor: '#007bff',
+      borderColor: '#007bff',
+      borderWidth: 1,
+      hoverBackgroundColor: '#33B2FF ',
+      hoverBorderColor: '#007bff',
+      data: [65, 59, 80, 81, 56, 55, 40]
     }
-}
+  ]
+};
 
-// export default class App extends React.Component {
-  render() {
-    return (
+// export default React.createClass({
+//   displayName: 'BarExample',
+
+  return (
+   
       <div>
-        <Bar
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Weekly Active Users',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
+        <h3>Percentace of Chores Completed Over the Last Week</h3>
+        <HorizontalBar data={data} />
       </div>
-    );
+    )
+    
+
+// });
     }
-}
 
 export default BarChart;
