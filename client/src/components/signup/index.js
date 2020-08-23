@@ -6,7 +6,7 @@ import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 
 
-function SignUpForm({ refreshUsername }) {
+function SignUpForm({ refreshUserData }) {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -27,7 +27,7 @@ function SignUpForm({ refreshUsername }) {
             .then(response => {
                 setError(null);
                 console.log(response);
-                refreshUsername();
+                refreshUserData();
                 setRedirect("/household");
             })
             .catch(err => {

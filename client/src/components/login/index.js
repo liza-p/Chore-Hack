@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 
-const LoginForm = ({ refreshUsername }) => {
+const LoginForm = ({ refreshUserData }) => {
     const emailRef = useRef();
     const passwordRef = useRef();
 
@@ -25,7 +25,7 @@ const LoginForm = ({ refreshUsername }) => {
             .then(response => {
                 setError(null);
                 console.log(response);
-                refreshUsername();
+                refreshUserData();
                 setRedirect("/dashboard");
             })
             .catch(err => {

@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
+import { useChoreContext } from "../../utils/GlobalState";
 
-
-function Navbar({ username, refreshUsername }) {
+function Navbar({ refreshUserData }) {
+    const state = useChoreContext()[0];
     const [redirect, setRedirect] = useState();
 
     const handleLogout = () => {
         console.log(redirect);
         API.logout()
             .then(() => {
-                refreshUsername(); // update login status
+                refreshUserData(); // update login status
                 setRedirect("/login");
             })
             .catch(err => console.log(err));
@@ -45,9 +46,9 @@ function Navbar({ username, refreshUsername }) {
                     </li>
                 </ul>
             </div>
-            {username ? 
+            {state.username ? 
             <span>
-                <span className="mr-2">Logged in as {username}</span>
+                <span className="mr-2">Logged in as {state.username}</span>
                 <Button variant="primary" onClick={handleLogout}>Log Out</Button> 
                 </span> :
             <Link to="/login"><Button variant="primary">Sign in</Button></Link>
