@@ -18,14 +18,13 @@ const data = {
     }
   ]
 };
-
 // export default React.createClass({
 //   displayName: 'BarExample',
 
   return (
    
-      <div>
-        <h3>Percentace of Chores Completed Over the Last Week</h3>
+      <div style={{ height: 500, width: 800}}>
+        <h5>Percentace of Chores Completed Over the Last Week</h5>
         <HorizontalBar data={data} />
       </div>
     )

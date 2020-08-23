@@ -3,22 +3,16 @@ import React from "react";
 import BarChart from "../BarChart";
 import "./style.css"
 
-function Charts () {
+function Charts() {
   return (
 
     <div id="me" className="jumbotron jumbotron-fluid">
-  <div className="container">
-    <br></br>
-    <div className="row">
-    <div className="col">
-        <BarChart />
+      <div className="container">
+        <div className="row">
+          <BarChart />
+        </div>
+      </div>
     </div>
-    {/* <div className="col">
-      <Chart />
-    </div> */}
-  </div>
-  </div>
-</div>
   )
 }
 export default Charts;
