@@ -30,7 +30,10 @@ module.exports = {
     // console.log(req.query);
     db.User.findAll({ where: { HouseholdId: req.user.HouseholdId } })
       .then(data => res.json(
-        data.map((row) => row.dataValues.name)
+        data.map((row) => ({
+          id: row.dataValues.id,
+          name: row.dataValues.name
+        }))
       ))
       .catch(function (err) {
         console.log(err);
