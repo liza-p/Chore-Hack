@@ -20,16 +20,16 @@ import {
 import WbSunny from '@material-ui/icons/WbSunny';
 import FilterDrama from '@material-ui/icons/FilterDrama';
 import Opacity from '@material-ui/icons/Opacity';
-import ColorLens from '@material-ui/icons/ColorLens';
+import Home from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import { owners } from '../calendarr/demo-data/tasks';
 
 const appointments = [
   {
     id: 0,
-    title: 'Watercolor Landscape',
-    startDate: new Date(2018, 6, 23, 9, 30),
-    endDate: new Date(2018, 6, 23, 11, 30),
+    title: 'Sweet',
+    startDate: new Date(2020, 8, 23, 12, 30),
+    endDate: new Date(2020, 8, 23, 13, 30),
     ownerId: 1,
   }, {
     id: 1,
@@ -58,10 +58,10 @@ const appointments = [
   }, {
     id: 5,
     title: 'Watercolor Landscape',
-    startDate: new Date(2018, 6, 6, 13, 0),
-    endDate: new Date(2018, 6, 6, 14, 0),
-    rRule: 'FREQ=WEEKLY;BYDAY=FR;UNTIL=20180816',
-    exDate: '20180713T100000Z,20180727T100000Z',
+    startDate: new Date(2020, 8, 6, 13, 0),
+    endDate: new Date(2020, 9, 6, 14, 0),
+    rRule: 'FREQ=WEEKLY;BYDAY=FR;UNTIL=20200816',
+    exDate: '20200713T100000Z,20200727T100000Z',
     ownerId: 2,
   }, {
     id: 6,
@@ -224,18 +224,18 @@ const styles = theme => ({
   },
 });
 
-const WeatherIcon = ({ classes, id }) => {
-  switch (id) {
-    case 0:
-      return <Opacity className={classes.rain} fontSize="large" />;
-    case 1:
-      return <WbSunny className={classes.sun} fontSize="large" />;
-    case 2:
-      return <FilterDrama className={classes.cloud} fontSize="large" />;
-    default:
-      return null;
-  }
-};
+// const WeatherIcon = ({ classes, id }) => {
+//   switch (id) {
+//     case 0:
+//       return <Opacity className={classes.rain} fontSize="large" />;
+//     case 1:
+//       return <WbSunny className={classes.sun} fontSize="large" />;
+//     case 2:
+//       return <FilterDrama className={classes.cloud} fontSize="large" />;
+//     default:
+//       return null;
+//   }
+// };
 
 // #FOLD_BLOCK
 const CellBase = React.memo(({
@@ -262,7 +262,7 @@ const CellBase = React.memo(({
       })}
     >
       <div className={classes.content}>
-        <WeatherIcon classes={classes} id={iconId} />
+        {/* <WeatherIcon classes={classes} id={iconId} /> */}
       </div>
       <div className={classes.text}>
         {formatDate(startDate, formatOptions)}
@@ -287,8 +287,8 @@ const AppointmentContent = withStyles(styles, { name: 'AppointmentContent' })(({
 const FlexibleSpace = withStyles(styles, { name: 'ToolbarRoot' })(({ classes, ...restProps }) => (
   <Toolbar.FlexibleSpace {...restProps} className={classes.flexibleSpace}>
     <div className={classes.flexContainer}>
-      <ColorLens fontSize="large" htmlColor="#FF7043" />
-      <Typography variant="h5" style={{ marginLeft: '10px' }}>Art School</Typography>
+      <Home fontSize="large" htmlColor="#03a9f4" />
+      <Typography variant="h5" style={{ marginLeft: '10px' }}>Chore Chart</Typography>
     </div>
   </Toolbar.FlexibleSpace>
 ));
@@ -336,7 +336,7 @@ export default class Demo extends React.PureComponent {
             onCommitChanges={this.commitChanges}
           />
           <ViewState
-            defaultCurrentDate="2018-07-17"
+            defaultCurrentDate={new Date()}
           />
 
           <MonthView
