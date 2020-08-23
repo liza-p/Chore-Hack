@@ -21,25 +21,18 @@ import {
 function App() {
   const dispatch = useChoreContext()[1];
 
-  // the display name of the currently logged in user
-  const [username, setUsername] = useState();
-
-  // this function checks the display name of logged in user and sets the state as such
-  const refreshUsername = () => {
+  const refreshUserData = () => {
+    // set username
     API.getUsername()
       .then(response => {
-        setUsername(response.data);
+        dispatch({type: UPDATE_USERNAME, username: response.data});
       })
       .catch(err => {
         console.log(err);
-        setUsername("");
+        dispatch({type: UPDATE_USERNAME, username: ""});
       })
-  };
 
-  // check login status on app load
-  useEffect(refreshUsername);
-
-  useEffect(() => {
+    // set household info
     API.getHouseholdInfo()
       .then(response => {
         console.log(response);
@@ -65,19 +58,22 @@ function App() {
           members: [],
         });
       })
-  }, [dispatch]);
+  }
+
+  // load user data on app load
+  useEffect(refreshUserData, []);
 
   return (
     <Router>
-      <Navbar username={username} refreshUsername={refreshUsername} />
+      <Navbar refreshUserData={refreshUserData} />
         <div>
           <Switch>
             <Redirect exact path="/" to="/login" />
             <Route exact path="/signup">
-              <SignUp refreshUsername={refreshUsername} />
+              <SignUp refreshUserData={refreshUserData} />
             </Route>
             <Route exact path="/login">
-              <Login refreshUsername={refreshUsername} />
+              <Login refreshUserData={refreshUserData} />
             </Route>
             <Route exact path="/household" component={Household} />
             <Route exact path="/dashboard" component={Dashboard} />
