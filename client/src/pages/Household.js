@@ -9,7 +9,7 @@ const Households = () => {
     return (
         <Container fluid>
             <Members />
-            <App/>
+            {/* <App/> */}
         </Container>
     );
 };
