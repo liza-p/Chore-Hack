@@ -7,10 +7,10 @@ class Chart extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            labels: ['Household', 'Household', 'Household', 'Household', 'Household', 'Household', 'Household'],
+            labels: ['Hannah', 'Sierra', 'Ayla', 'Liza'],
             datasets: [{
-                data: [30, 10, 10, 20, 10, 10, 10],
-                backgroundColor: ['red', 'orange', 'yellow', 'blue', 'green', 'indigo', 'purple']
+                data: [30, 20, 30, 20],
+                backgroundColor: ['red', 'orange', 'yellow', 'blue']
             }]
         }
     }
@@ -18,13 +18,13 @@ class Chart extends Component {
     render() {
         return (
             <div className="pie">
-                <figcaption id="Chores"><strong>Users Completed Chores</strong></figcaption>
+                <figcaption id="Chores"><strong>Percentace of Chores Completed Over the Last Week</strong></figcaption>
                 <Pie
                     data={{
                         labels: this.state.labels,
                         datasets: this.state.datasets
                     }}
-                    height = { 250 }
+                    height = { 100 }
                 />
                 <br />
             </div>
