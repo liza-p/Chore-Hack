@@ -18,5 +18,8 @@ export default {
   },
   createChore: function(chore,repeats, repeated_days, UserId){
     return axios.post("/api/chores", {chore,repeats, repeated_days, UserId});
+  },
+  getHouseholdInfo: function() {
+    return axios.get("/api/household");
   }
 };

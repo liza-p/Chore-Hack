@@ -9,8 +9,18 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import API from "./utils/API";
+import { useChoreContext } from "./utils/GlobalState";
+import {
+  UPDATE_USERNAME,
+  UPDATE_HOUSEHOLD,
+  UPDATE_MEMBERS,
+  UPDATE_CHORES,
+  UPDATE_REPETITIONS,
+} from './utils/actions';
 
 function App() {
+  const dispatch = useChoreContext()[1];
+
   // the display name of the currently logged in user
   const [username, setUsername] = useState();
 
@@ -28,6 +38,34 @@ function App() {
 
   // check login status on app load
   useEffect(refreshUsername);
+
+  useEffect(() => {
+    API.getHouseholdInfo()
+      .then(response => {
+        console.log(response);
+        dispatch({ 
+          type: UPDATE_HOUSEHOLD, 
+          household: response.data.name, 
+          inviteCode: response.data.invite_code,
+        });
+        dispatch({ 
+          type: UPDATE_MEMBERS, 
+          members: response.data.members,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ 
+          type: UPDATE_HOUSEHOLD, 
+          household: null, 
+          inviteCode: null,
+        });
+        dispatch({ 
+          type: UPDATE_MEMBERS, 
+          members: [],
+        });
+      })
+  }, [dispatch]);
 
   return (
     <Router>
