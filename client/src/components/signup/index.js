@@ -54,8 +54,7 @@ function SignUpForm({ refreshUserData }) {
                 <Card.ImgOverlay>
                     <Card.Text>
                         <Card body style={{ opacity: 0.9, marginTop: '60px', marginLeft: '90px', marginRight: '90px' }}>
-
-                            <form className="mt-3">
+                            <form className="mt-3 rounded">
                                 <ErrorMessage message={error} />
                                 <div className="form-group">
                                     <label htmlFor="inputName">Display Name</label>

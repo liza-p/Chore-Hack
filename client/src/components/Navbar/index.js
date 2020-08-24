@@ -36,7 +36,7 @@ function Navbar({ refreshUserData }) {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink className="nav-link" activeClassName="active" to="/dashboard">Dashboard</NavLink>
+                        <NavLink className="nav-link" activeClassName="active" to="/dashboard" >Dashboard</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" activeClassName="active" to="/household">Manage Household</NavLink>
