@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Table } from 'react-bootstrap';
+import {useChoreContext} from "../../utils/GlobalState";
+import {UPDATE_CHORES, UPDATE_MEMBERS} from "../../utils/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import API from "../../utils/API";
@@ -26,27 +28,47 @@ const Chores = () => {
     const [choreName, setChoreName] = useState("");
     const [assignedId, setAssignedId] = useState("");
     const [repeated, setRepeated] = useState(false);
-    const [members, setMembers] = useState([]);
     const [repeatedDays, setRepeatedDays] = useState([false,false,false,false,false,false,false]);
 
     const addChore = () => {
       API.createChore(choreName, repeated, repeatedDays, assignedId)
       .then(() => {
+        loadChores()
         console.log("Chore is created!");
         setChoreName("");
         setRepeated(false);
         setRepeatedDays([false,false,false,false,false,false,false]);
       });
     };
+
+    const removeChore = (choreId) =>{
+      API.removeChore(choreId).then(() =>  loadChores());
+     
+    }
     // change the repeated days state 
     // function takes day param that represents days from M-Su and state of the checkbox
     const toggleDay = (day, checked) => {
-      repeatedDays[day] = checked;
-      setRepeatedDays(repeatedDays);
+      const newRepeatedDays = repeatedDays.slice();
+      newRepeatedDays[day] = checked;
+      setRepeatedDays(newRepeatedDays);
     };
 
+    const loadChores = () =>{
+      API.getAllHouseholdChores().then((res) =>{
+        dispatch({type: UPDATE_CHORES, chores: res.data});
+      })
+    }
+
+    const [state, dispatch]= useChoreContext();
+
     useEffect(() => {
-        API.getMembers().then((res) => setMembers(res.data));
+        API.getMembers().then((res) => {
+          dispatch({type: UPDATE_MEMBERS, members: res.data});
+        });
+    }, [])
+
+    useEffect(() =>{
+      loadChores();
     }, [])
 
     return (
@@ -73,18 +95,29 @@ const Chores = () => {
       <td>
         <select className="form-control" onChange = {(e) => setAssignedId(e.target.value)}>
         <option value="">Select an assignee...</option>
-          {members.map((member, i) => <option value={member.id} key={i}>{member.name}</option>)}
+          {state.members.map((member, i) => <option value={member.id} key={i}>{member.name}</option>)}
         </select>
       </td>
       <td><button className="btn btn-primary" onClick={addChore}>Add</button></td>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td></td>
-    </tr>
+    {state.chores.map((chore, i) => {
+      const user = state.members.find((user) => user.id === chore.UserId);
+      return (
+        <tr key={i}>
+          <td>{chore.chore}</td>
+          <td>{chore.repeats ? "Yes" : "No"}</td>
+          <td>{
+            chore.repeats
+            ? ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].filter((day, i) => chore.repeated_days[i]).join(',')
+            : null
+          }</td>
+          <td>{user.name}</td>
+          <td><button className="btn btn-danger" onClick={() => removeChore(chore.id)}>X</button></td>
+        </tr>
+      );
+    }
+    )}
+    
   </tbody>
 </Table>
 

@@ -21,5 +21,11 @@ export default {
   },
   getHouseholdInfo: function() {
     return axios.get("/api/household");
+  },
+  getAllHouseholdChores: function() {
+    return axios.get("/api/chores");
+  },
+  removeChore: function(choreId){
+    return axios.delete("/api/chores?id=" + choreId);
   }
 };
