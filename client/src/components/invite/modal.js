@@ -14,7 +14,7 @@ class JoinBtn extends Component {
     return (
       <>
         <div
-          className="modalContainer mx-auto"
+          className="modalContainer text-center"
         >
           <Button onClick={this.openModal} className="arrow-button" >
           <h1><i className="fas fa-arrow-right fa-3x"></i></h1>
