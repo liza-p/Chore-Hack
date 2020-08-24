@@ -27,7 +27,7 @@ function Navbar({ refreshUserData }) {
         redirect ? <Redirect to={redirect} /> :
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="/">
-                <img src="../img/project3.png" style={{ width: "45px", height: "45px", top: "6px" }} className="d-inline-block" alt="" />
+                <img src="../img/project3.png" style={{ width: "45px", height: "45px" }} className="d-inline-block" alt="" />
                 Chore Hack
             </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ function Navbar({ refreshUserData }) {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <NavLink className="nav-link" activeClassName="active" to="/dashboard">Dashboard</NavLink>
+                        <NavLink className="nav-link" activeClassName="active" to="/dashboard" >Dashboard</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" activeClassName="active" to="/household">Manage Household</NavLink>
