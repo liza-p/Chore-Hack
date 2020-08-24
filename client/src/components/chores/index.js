@@ -108,7 +108,7 @@ const Chores = () => {
           <td>{chore.repeats ? "Yes" : "No"}</td>
           <td>{
             chore.repeats
-            ? ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].filter((day, i) => chore.repeated_days[i]).join(',')
+            ? ["Mon", " Tues", " Wed", " Thurs", " Fri", " Sat", " Sun"].filter((day, i) => chore.repeated_days[i]).join(',')
             : null
           }</td>
           <td>{user.name}</td>
