@@ -8,7 +8,10 @@ module.exports = {
       active: true,
     }})
       .then(data => res.json(
-        data.map((row) => row.dataValues)
+        data.map((row) => ({
+          ...(row.dataValues),
+          repeated_days: JSON.parse(row.dataValues.repeated_days)
+        }))
       ))
       .catch(function(err) {
         console.log(err);
