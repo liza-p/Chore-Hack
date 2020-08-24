@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
+import './style.css'
 
-class App extends Component {
+class JoinBtn extends Component {
   state = {
     isOpen: false
   };
@@ -13,21 +14,23 @@ class App extends Component {
     return (
       <>
         <div
-          className="modalContainer"
-          style={{ height: "100vh" }}
+          className="modalContainer mx-auto"
         >
-          <Button variant="primary" onClick={this.openModal}>
-            Launch demo modal
+          <Button onClick={this.openModal} className="arrow-button" >
+          <h1><i className="fas fa-arrow-right fa-3x"></i></h1>
           </Button>
         </div>
         <Modal show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Join a New Household</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Body>invite code</Modal.Body>
           <Modal.Footer>
+            <Button variant="primary" onClick={this.closeModal}>
+              Join
+            </Button>
             <Button variant="secondary" onClick={this.closeModal}>
-              Close
+              Cancel
             </Button>
           </Modal.Footer>
         </Modal>
@@ -36,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default JoinBtn;
