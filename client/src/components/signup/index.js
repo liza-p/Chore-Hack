@@ -49,10 +49,10 @@ function SignUpForm({ refreshUserData }) {
 
     return (
         redirect ? <Redirect to={redirect} /> :
-            <Card className="bg-dark text-white" style={{ margin: '0px' }}>
+            <Card className="text-white rounded-0" style={{ margin: '0px' }}>
                 <Card.Img src={process.env.PUBLIC_URL + "/img/hero-img.jpg"} alt="Card image" />
                 <Card.ImgOverlay>
-                    <Card.Text>
+                    {/* <Card.Text> */}
                         <Card body style={{ opacity: 0.9, marginTop: '60px', marginLeft: '90px', marginRight: '90px' }}>
                             <form className="mt-3 rounded">
                                 <ErrorMessage message={error} />
@@ -77,7 +77,7 @@ function SignUpForm({ refreshUserData }) {
                                 <button type="button ml-2" className="btn btn-success" onClick={event => handleSubmit(event)}>Submit</button>
                             </form>
                         </Card >
-                    </Card.Text>
+                    {/* </Card.Text> */}
                 </Card.ImgOverlay>
             </Card>
 
