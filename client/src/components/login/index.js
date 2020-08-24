@@ -46,10 +46,10 @@ const LoginForm = ({ refreshUserData }) => {
 
     return (
         redirect ? <Redirect to={redirect} /> :
-            <Card className="bg-dark text-white" style={{ margin: '0px' }}>
+            <Card className="text-white rounded-0" style={{ margin: '0px' }}>
                 <Card.Img src={process.env.PUBLIC_URL + "/img/hero-img2.jpg"} alt="Card image" />
                 <Card.ImgOverlay>
-                    <Card.Text>
+                    {/* <Card.Text> */}
                         <Card body style={{ opacity: 0.9, marginTop: '120px', marginLeft: '90px', marginRight: '90px' }}>
                         <form className="m-3 mt-3 rounded" >
                             <ErrorMessage message={error} />
@@ -66,7 +66,7 @@ const LoginForm = ({ refreshUserData }) => {
                             <Link to="/signup">New user? Sign up</Link>
                         </form>
                         </Card >
-                    </Card.Text>
+                    {/* </Card.Text> */}
                 </Card.ImgOverlay>
             </Card>
     )
