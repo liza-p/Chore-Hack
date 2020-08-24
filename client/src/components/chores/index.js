@@ -33,7 +33,7 @@ const Chores = () => {
   const [repeatedDays, setRepeatedDays] = useState([false, false, false, false, false, false, false]);
 
   const addChore = () => {
-      API.createChore(choreName, repeated, repeatedDays, assignedId)
+    API.createChore(choreName, repeated, repeatedDays, dueDate, assignedId)
       .then(() => {
         loadChores()
         console.log("Chore is created!");
@@ -57,7 +57,6 @@ const Chores = () => {
   const loadChores = () => {
     API.getAllHouseholdChores()
       .then(res => {
-        console.log(res.data);
         dispatch({ type: UPDATE_CHORES, chores: res.data });
       })
       .catch(err => {

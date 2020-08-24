@@ -33,7 +33,17 @@ module.exports = {
       UserId: req.body.UserId,
     })
       .then(chore => {
-        res.status(200).json(chore);
+        // generate a single repetition for one-time chores
+        if (!req.body.repeats) {
+          return db.Repetition.create({
+            due_date: req.body.dueDate,
+            ChoreId: chore.id,
+            UserId: chore.UserId,
+          });
+        }
+      })
+      .then(() => {
+        res.status(200).end();
       })
       .catch(err => {
         console.error(err);
