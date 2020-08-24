@@ -3,21 +3,23 @@ const db = require("../models")
 module.exports = {
 
   findAll(req, res) {
-    db.Chore.findAll({ where: {
-      HouseholdId: req.user.HouseholdId,
-      active: true,
-    }})
+    db.Chore.findAll({
+      where: {
+        HouseholdId: req.user.HouseholdId,
+        active: true,
+      }
+    })
       .then(data => res.json(
-        data.map((row) => ({
+        data.map(row => ({
           ...(row.dataValues),
           repeated_days: JSON.parse(row.dataValues.repeated_days)
         }))
       ))
-      .catch(function(err) {
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
-    },
+  },
 
   create(req, res) {
     console.log('body', req.body);
@@ -30,13 +32,13 @@ module.exports = {
       HouseholdId: req.user.HouseholdId,
       UserId: req.body.UserId,
     })
-    .then(function(chore) {
-      res.status(200).json(chore);
-    })
-    .catch(function(err) {
-      console.error(err);
-      res.status(500).json(err);
-    });
+      .then(chore => {
+        res.status(200).json(chore);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json(err);
+      });
   },
 
   update(req, res) {
@@ -46,10 +48,10 @@ module.exports = {
       repeated_days: req.body.repeated_days,
       UserId: req.body.UserId,
     }, {
-      where: {id: req.query.id}
+      where: { id: req.query.id }
     })
       .then(() => res.status(200).end())
-      .catch(function(err) {
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
@@ -59,10 +61,12 @@ module.exports = {
     db.Chore.update({
       active: false
     }, {
-      where: {id: req.query.id}
+      where: { id: req.query.id }
     })
-      .then(() => res.status(200).end())
-      .catch(function(err) {
+      .then(() => {
+        res.status(200).end()
+      })
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
