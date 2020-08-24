@@ -6,7 +6,7 @@ import { Form } from 'react-bootstrap';
 function HouseholdBtn () {
 
   return (
-    <Form>
+    <Form className="m-3">
     {['chore-1', 'chore-2', 'chore-3', 'chore-4'].map((type) => (
         <div key={`Household-${type}`} className="mb-3">
         <Form.Check 
