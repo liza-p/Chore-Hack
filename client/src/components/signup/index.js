@@ -51,7 +51,7 @@ function SignUpForm({ refreshUserData }) {
         redirect ? <Redirect to={redirect} /> :
             <Card className="text-white rounded-0" style={{ margin: '0px' }}>
                 <Card.Img src={process.env.PUBLIC_URL + "/img/hero-img.jpg"} alt="Card image" />
-                <Card.ImgOverlay>
+                <Card.ImgOverlay className="rounded-0">
                     {/* <Card.Text> */}
                         <Card body style={{ opacity: 0.9, marginTop: '60px', marginLeft: '90px', marginRight: '90px' }}>
                             <form className="mt-3 rounded">

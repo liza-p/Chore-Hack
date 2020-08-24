@@ -1,13 +1,15 @@
 import React from 'react';
 import "./style.css";
-import { Table } from "react-bootstrap";
+import { Container, Table } from "react-bootstrap";
 import App from "../Invite/modal";
 import { useChoreContext } from "../../utils/GlobalState"
 
 const Members = () => {
     const state = useChoreContext()[0]
     return (
-        <div className="d-flex justify-content-center memberContainer">
+
+    <div className="d-flex justify-content-center">
+        <Container>
             {/* <div className="row"> */}
             {/* <div className="col-8"> */}
             <Table striped bordered hover size="sm">
@@ -34,6 +36,7 @@ const Members = () => {
                     )}
                 </tbody>
             </Table>
+        </Container>
             <App />
         </div>
         //     </div>
