@@ -6,6 +6,6 @@ const passport = require("../../config/passport");
 router.post("/signup", usersController.signup);
 router.post("/login", passport.authenticate("local"), usersController.login);
 router.get("/logout", usersController.logout);
-router.get("/name", usersController.getUsername); // for seeing who is logged in
+router.get("/", usersController.getUserData); // for seeing who is logged in
 
 module.exports = router;

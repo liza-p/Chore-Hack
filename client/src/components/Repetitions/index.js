@@ -3,16 +3,15 @@ import { Form } from 'react-bootstrap';
 
 
 
-function HouseholdBtn () {
+function Repetitions (props) {
 
   return (
     <Form className="m-3">
-    {['chore-1', 'chore-2', 'chore-3', 'chore-4'].map((type) => (
-        <div key={`Household-${type}`} className="mb-3">
+    {props.reps.map((rep) => (
+        <div key={rep.id} className="mb-3">
         <Form.Check 
             type= 'checkbox'
-            id={`Household-${type}`}
-            label={`Household ${type}`}
+            label={rep.Chore?.chore}
         />
         </div>
         
@@ -24,4 +23,4 @@ function HouseholdBtn () {
 
 // render(<ToggleButtonGroupControlled />);
 
-export default HouseholdBtn;
+export default Repetitions;

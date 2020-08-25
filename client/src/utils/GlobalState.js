@@ -21,7 +21,8 @@ const reducer = (state, action) => {
         case UPDATE_USERNAME:            
             return {
                 ...state,
-                username: action.username
+                username: action.username,
+                userId: action.userId
             }
         
         case UPDATE_HOUSEHOLD:

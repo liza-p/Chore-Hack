@@ -3,7 +3,16 @@ const db = require("../models")
 module.exports = {
 
   findAll(req, res) {
-    db.Repetition.findAll()
+    db.Repetition.findAll({
+      include: [{
+        model: db.Chore,
+        where:{
+          HouseholdId: req.user.HouseholdId,
+          active: true,
+        }
+      }], 
+      
+    })
       .then(data => res.json(
         data.map(row => row.dataValues)
       ))

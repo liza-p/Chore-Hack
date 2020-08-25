@@ -14,7 +14,7 @@ import {
   UPDATE_USERNAME,
   UPDATE_HOUSEHOLD,
   UPDATE_MEMBERS,
-  // UPDATE_CHORES,
+  UPDATE_CHORES,
   // UPDATE_REPETITIONS,
 } from './utils/actions';
 
@@ -23,13 +23,16 @@ function App() {
 
   const refreshUserData = () => {
     // set username
-    API.getUsername()
+    API.getUserData()
       .then(response => {
-        dispatch({type: UPDATE_USERNAME, username: response.data});
+        dispatch({type: UPDATE_USERNAME, 
+          username: response.data.name,
+          userId: response.data.id
+        });
       })
       .catch(err => {
         console.log(err);
-        dispatch({type: UPDATE_USERNAME, username: ""});
+        dispatch({type: UPDATE_USERNAME, username: "", userId: null});
       })
 
     // set household info
@@ -60,8 +63,21 @@ function App() {
       })
   }
 
+  const loadChores = () => {
+    API.getAllHouseholdChores()
+      .then(res => {
+        dispatch({ type: UPDATE_CHORES, chores: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: UPDATE_CHORES, chores: [] });
+      });
+  };
+
   // load user data on app load
   useEffect(refreshUserData, []);
+
+  useEffect(loadChores, []);
 
   return (
     <Router>
