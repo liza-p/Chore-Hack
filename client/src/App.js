@@ -23,13 +23,16 @@ function App() {
 
   const refreshUserData = () => {
     // set username
-    API.getUsername()
+    API.getUserData()
       .then(response => {
-        dispatch({type: UPDATE_USERNAME, username: response.data});
+        dispatch({type: UPDATE_USERNAME, 
+          username: response.data.name,
+          userId: response.data.id
+        });
       })
       .catch(err => {
         console.log(err);
-        dispatch({type: UPDATE_USERNAME, username: ""});
+        dispatch({type: UPDATE_USERNAME, username: "", userId: null});
       })
 
     // set household info
