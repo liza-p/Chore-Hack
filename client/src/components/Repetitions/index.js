@@ -7,11 +7,11 @@ function Repetitions (props) {
 
   return (
     <Form className="m-3">
-    {props.reps.map((rep, i) => (
-        <div key={i} className="mb-3">
+    {props.reps.map((rep) => (
+        <div key={rep.id} className="mb-3">
         <Form.Check 
             type= 'checkbox'
-            label={rep.chore?.chore}
+            label={rep.Chore?.chore}
         />
         </div>
         
