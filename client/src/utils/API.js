@@ -27,5 +27,8 @@ export default {
   },
   removeChore: function(choreId){
     return axios.delete("/api/chores?id=" + choreId);
+  },
+  deactivateChore: function(choreId) {
+    return axios.post("/api/chores/deactivate?id=" + choreId);
   }
 };
