@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 import './style.css'
 
 class JoinBtn extends Component {
@@ -17,14 +17,23 @@ class JoinBtn extends Component {
           className="modalContainer text-center"
         >
           <Button onClick={this.openModal} className="arrow-button" >
-          <h1><i className="fas fa-arrow-right fa-3x"></i></h1>
+            <h1><i className="fas fa-arrow-right fa-3x"></i></h1>
           </Button>
         </div>
         <Modal show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>Join a New Household</Modal.Title>
           </Modal.Header>
-          <Modal.Body>invite code</Modal.Body>
+          <Modal.Body>
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+              </InputGroup.Prepend>
+              <FormControl
+                placeholder="Household Code"
+                aria-label="New Code"
+              />
+            </InputGroup>
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={this.closeModal}>
               Join

@@ -5,6 +5,7 @@ import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator
 import Typography from '@material-ui/core/Typography';
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
 import classNames from 'clsx';
+
 import {
   Scheduler,
   MonthView,
@@ -17,79 +18,16 @@ import {
   Resources,
   DragDropProvider,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import WbSunny from '@material-ui/icons/WbSunny';
-import FilterDrama from '@material-ui/icons/FilterDrama';
-import Opacity from '@material-ui/icons/Opacity';
 import Home from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
-import { owners } from '../calendarr/demo-data/tasks';
 
 const appointments = [
   {
-    id: 0,
-    title: 'Sweet',
-    startDate: new Date(2020, 8, 23, 12, 30),
-    endDate: new Date(2020, 8, 23, 13, 30),
-    ownerId: 1,
-  }, {
-    id: 1,
-    title: 'Monthly Planning',
-    startDate: new Date(2018, 5, 28, 9, 30),
-    endDate: new Date(2018, 5, 28, 11, 30),
-    ownerId: 1,
-  }, {
-    id: 2,
-    title: 'Recruiting students',
-    startDate: new Date(2018, 6, 9, 12, 0),
-    endDate: new Date(2018, 6, 9, 13, 0),
-    ownerId: 2,
-  }, {
-    id: 3,
-    title: 'Oil Painting',
-    startDate: new Date(2018, 6, 18, 14, 30),
-    endDate: new Date(2018, 6, 18, 15, 30),
-    ownerId: 2,
-  }, {
-    id: 4,
-    title: 'Open Day',
-    startDate: new Date(2018, 6, 20, 12, 0),
-    endDate: new Date(2018, 6, 20, 13, 35),
-    ownerId: 6,
-  }, {
-    id: 5,
-    title: 'Watercolor Landscape',
-    startDate: new Date(2020, 8, 6, 13, 0),
-    endDate: new Date(2020, 9, 6, 14, 0),
-    rRule: 'FREQ=WEEKLY;BYDAY=FR;UNTIL=20200816',
-    exDate: '20200713T100000Z,20200727T100000Z',
-    ownerId: 2,
-  }, {
-    id: 6,
-    title: 'Meeting of Instructors',
-    startDate: new Date(2018, 5, 28, 12, 0),
-    endDate: new Date(2018, 5, 28, 12, 30),
-    rRule: 'FREQ=WEEKLY;BYDAY=TH;UNTIL=20180727',
-    exDate: '20180705T090000Z,20180719T090000Z',
-    ownerId: 5,
-  }, {
-    id: 7,
-    title: 'Oil Painting for Beginners',
-    startDate: new Date(2018, 6, 3, 11, 0),
-    endDate: new Date(2018, 6, 3, 12, 0),
-    rRule: 'FREQ=WEEKLY;BYDAY=TU;UNTIL=20180801',
-    exDate: '20180710T080000Z,20180724T080000Z',
-    ownerId: 3,
-  }, {
-    id: 8,
-    title: 'Watercolor Workshop',
-    startDate: new Date(2018, 7, 9, 11, 0),
-    endDate: new Date(2018, 7, 9, 12, 0),
-    ownerId: 3,
-  }, {
     id: 9,
     title: 'August Event',
-    startDate: new Date(2020, 7, 23, 11, 0),
-    endDate: new Date(2020, 7, 23, 12, 0),
+    // startDate: new Date(2020, 7, 23, 11, 0),
+    // endDate: new Date(2020, 7, 23, 12, 0),
+    allDay: true,
     ownerId: 3,
   },
   {
@@ -97,15 +35,77 @@ const appointments = [
     title: 'September Event',
     startDate: new Date(2020, 8, 23, 11, 0),
     endDate: new Date(2020, 8, 23, 12, 0),
+    allDay: true,
     ownerId: 5,
   },{
     id: 11,
     title: 'January Event',
     startDate: new Date(2021, 0, 23, 11, 0),
     endDate: new Date(2021, 0, 23, 12, 0),
+    allDay: true,
     ownerId: 5,
   },
+  {
+    id: 14,
+    title: 'January Event',
+    startDate: new Date(2021, 0, 23, 11, 0),
+    endDate: new Date(2021, 0, 23, 12, 0),
+    allDay: true,
+    ownerId: 1,
+  }, {    
+    id: 15,
+    title: 'August Event 2',
+    startDate: new Date(2020, 7, 23, 0, 0),
+    endDate: new Date(2020, 7, 23, 23, 59),
+    allDay: true,
+    ownerId: 3,
+  },
+  {    
+    id: 12,
+    title: 'August Event 3',
+    startDate: new Date(2020, 7, 23, 11, 0),
+    endDate: new Date(2020, 7, 23, 12, 0),
+    allDay: true,
+    priorityId: 2,
+    ownerId: 2,
+  },
+  {    
+    id: 13,
+    title: 'August Event 4',
+    startDate: new Date(2020, 7, 23, 11, 0),
+    endDate: new Date(2020, 7, 23, 12, 0),
+    priorityId: 1,
+    allDay: true,
+    ownerId: 4,
+  },
+  
 ];
+
+const owners = [
+  {
+    text: 'Sierra',
+    id: 1,
+    color: '#FFA726',
+  }, {
+    text: 'Liza',
+    id: 2,
+    color: '#FF7043',
+  }, {
+    text: 'Ayla',
+    id: 3,
+    color: '#E91E63',
+  }, {
+    text: 'Hannah',
+    id: 4,
+    color: '#AB47BC',
+  }
+];
+
+// export const priorities = [
+//   { id: 1, text: 'Low Priority', color: green },
+//   { id: 2, text: 'Medium Priority', color: lightBlue },
+//   { id: 3, text: 'High Priority', color: deepOrange },
+// ];
 
 const resources = [{
   fieldName: 'ownerId',
@@ -161,24 +161,6 @@ const styles = theme => ({
     padding: '0.5em',
     textAlign: 'center',
   },
-  sun: {
-    color: '#FFEE58',
-  },
-  cloud: {
-    color: '#90A4AE',
-  },
-  rain: {
-    color: '#4FC3F7',
-  },
-  sunBack: {
-    backgroundColor: '#FFFDE7',
-  },
-  cloudBack: {
-    backgroundColor: '#ECEFF1',
-  },
-  rainBack: {
-    backgroundColor: '#E1F5FE',
-  },
   opacity: {
     opacity: '0.5',
   },
@@ -224,11 +206,6 @@ const styles = theme => ({
     color: theme.palette.action.active,
     verticalAlign: 'middle',
   },
-  circle: {
-    width: theme.spacing(4.5),
-    height: theme.spacing(4.5),
-    verticalAlign: 'super',
-  },
   textCenter: {
     textAlign: 'center',
   },
@@ -243,18 +220,6 @@ const styles = theme => ({
   },
 });
 
-// const WeatherIcon = ({ classes, id }) => {
-//   switch (id) {
-//     case 0:
-//       return <Opacity className={classes.rain} fontSize="large" />;
-//     case 1:
-//       return <WbSunny className={classes.sun} fontSize="large" />;
-//     case 2:
-//       return <FilterDrama className={classes.cloud} fontSize="large" />;
-//     default:
-//       return null;
-//   }
-// };
 
 // #FOLD_BLOCK
 const CellBase = React.memo(({
@@ -274,14 +239,10 @@ const CellBase = React.memo(({
       tabIndex={0}
       className={classNames({
         [classes.cell]: true,
-        // [classes.rainBack]: iconId === 0,
-        // [classes.sunBack]: iconId === 1,
-        // [classes.cloudBack]: iconId === 2,
         [classes.opacity]: otherMonth,
       })}
     >
       <div className={classes.content}>
-        {/* <WeatherIcon classes={classes} id={iconId} /> */}
       </div>
       <div className={classes.text}>
         {formatDate(startDate, formatOptions)}
