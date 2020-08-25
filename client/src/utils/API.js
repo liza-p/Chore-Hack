@@ -30,5 +30,8 @@ export default {
   },
   deactivateChore: function(choreId) {
     return axios.post("/api/chores/deactivate?id=" + choreId);
+  }, 
+  getAllRepetitions: function(){
+    return axios.get("/api/repetitions");
   }
 };
