@@ -24,7 +24,7 @@ const data = {
   return (
    
       <div style={{ height: 500, width: 800, margin: 'auto'}}>
-        <h5>Percentage of Chores Completed Over the Last Week</h5>
+        <h4>Percentage of Chores Completed Over the Last Week</h4>
         <HorizontalBar data={data} />
       </div>
     )
