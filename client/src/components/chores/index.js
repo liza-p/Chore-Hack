@@ -83,11 +83,7 @@ const Chores = () => {
       });
   }, [dispatch]);
 
-  useEffect(() => {
-    loadChores();
-  }, []);
-
-  // console.log(state.chores)
+  console.log(state.chores)
 
   return (
     <div>
