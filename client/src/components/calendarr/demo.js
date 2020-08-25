@@ -5,6 +5,9 @@ import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator
 import Typography from '@material-ui/core/Typography';
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
 import classNames from 'clsx';
+import { Container } from "react-bootstrap";
+import "./demo.css";
+
 
 import {
   Scheduler,
@@ -292,6 +295,7 @@ export default class Demo extends React.PureComponent {
     const { data } = this.state;
 
     return (
+    <Container style={{ marginBottom: 20 }} >
       <Paper>
         <Scheduler
           data={data}
@@ -331,6 +335,7 @@ export default class Demo extends React.PureComponent {
           <DragDropProvider />
         </Scheduler>
       </Paper>
+    </Container>
     );
   }
 }
