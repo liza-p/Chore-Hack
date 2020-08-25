@@ -18,8 +18,6 @@ const data = {
     }
   ]
 };
-// export default React.createClass({
-//   displayName: 'BarExample',
 
   return (
    

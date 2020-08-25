@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
 import classNames from 'clsx';
 import { Container } from "react-bootstrap";
-import "./style.css";
+import "./demo.css";
 
 
 import {
