@@ -8,11 +8,11 @@ module.exports = {
     }
 
     // for getting household data (name, invite_code, members)
-    db.Household.findOne({ 
+    db.Household.findOne({
       where: { id: req.user.HouseholdId },
       include: db.User,
     })
-      .then((household) => {
+      .then(household => {
         // console.log(household);
         return res.json({
           name: household.name,
@@ -20,7 +20,7 @@ module.exports = {
           members: household.Users.map(user => ({ id: user.id, name: user.name }))
         });
       })
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
@@ -35,7 +35,7 @@ module.exports = {
           name: row.dataValues.name
         }))
       ))
-      .catch(function (err) {
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
@@ -43,8 +43,8 @@ module.exports = {
 
   getInviteCode(req, res) {
     db.Household.findOne({ where: { id: req.query.id } })
-      .then((data) => res.json(data.invite_code))
-      .catch(function (err) {
+      .then(data => res.json(data.invite_code))
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
@@ -54,7 +54,7 @@ module.exports = {
     console.log("Invite code", req.query.invite)
     console.log("User ID", req.query.userId);
     db.Household.findOne({ where: { invite_code: req.query.invite } })
-      .then(function (household) {
+      .then(household => {
         if (!household) {
           console.log("Incorect Invite Code")
           res.status(401).end();
@@ -65,8 +65,8 @@ module.exports = {
           where: { id: req.query.userId }
         })
       })
-      .then((user) => { res.status(200).end(); })
-      .catch(function (err) {
+      .then(() => res.status(200).end())
+      .catch(err => {
         console.log(err);
         res.status(500).end();
       });
