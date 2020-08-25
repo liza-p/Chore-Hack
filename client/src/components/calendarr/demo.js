@@ -17,6 +17,7 @@ import {
   EditRecurrenceMenu,
   Resources,
   DragDropProvider,
+  AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import Home from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
@@ -45,14 +46,7 @@ const appointments = [
     allDay: true,
     ownerId: 5,
   },
-  {
-    id: 14,
-    title: 'January Event',
-    startDate: new Date(2021, 0, 23, 11, 0),
-    endDate: new Date(2021, 0, 23, 12, 0),
-    allDay: true,
-    ownerId: 1,
-  }, {    
+ {    
     id: 15,
     title: 'August Event 2',
     startDate: new Date(2020, 7, 23, 0, 0),
@@ -66,17 +60,7 @@ const appointments = [
     startDate: new Date(2020, 7, 23, 11, 0),
     endDate: new Date(2020, 7, 23, 12, 0),
     allDay: true,
-    priorityId: 2,
     ownerId: 2,
-  },
-  {    
-    id: 13,
-    title: 'August Event 4',
-    startDate: new Date(2020, 7, 23, 11, 0),
-    endDate: new Date(2020, 7, 23, 12, 0),
-    priorityId: 1,
-    allDay: true,
-    ownerId: 4,
   },
   
 ];
