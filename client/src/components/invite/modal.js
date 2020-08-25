@@ -9,6 +9,8 @@ class JoinBtn extends Component {
 
   openModal = () => this.setState({ isOpen: true });
   closeModal = () => this.setState({ isOpen: false });
+  // this will be what we need to do when they click the join button on modal
+  submitCode = () => this.setState ({});
 
   render() {
     return (
@@ -35,6 +37,7 @@ class JoinBtn extends Component {
             </InputGroup>
           </Modal.Body>
           <Modal.Footer>
+            {/* This is the event handler that needs to be changed */}
             <Button variant="primary" onClick={this.closeModal}>
               Join
             </Button>
