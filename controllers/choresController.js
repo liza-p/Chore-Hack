@@ -67,7 +67,7 @@ module.exports = {
       });
   },
 
-  remove(req, res) {
+  deactivate(req, res) {
     db.Chore.update({
       active: false
     }, {
@@ -80,5 +80,19 @@ module.exports = {
         console.log(err);
         res.status(500).end();
       });
+  }, 
+  remove(req, res) {
+      db.Chore.destroy({
+        where: { id: req.query.id }
+      })
+      .then(() => {
+        res.status(200).end()
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).end();
+      });
+    
+
   }
 }
