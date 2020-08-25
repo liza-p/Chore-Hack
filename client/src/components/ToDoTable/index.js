@@ -42,27 +42,15 @@ function ToDoTable() {
 
 function HouseholdReps() {
   const [state, dispatch] = useChoreContext();
-
-  const repsWithChores = state.repetitions.map((repetition) => {
-    const chore = state.chores.find((chore) => chore.id === repetition.ChoreId);
-    return {...repetition, chore: chore}
-  });
-  console.log(repsWithChores);
   return (
-    <Repetitions reps={repsWithChores} />
+    <Repetitions reps={state.repetitions} />
   );
 }
 
 function UserReps() {
   const [state, dispatch] = useChoreContext();
-
-  const repsWithChores = state.repetitions.filter((repetition) => repetition.UserId === 4).map((repetition) => {
-    const chore = state.chores.find((chore) => chore.id === repetition.ChoreId);
-    return {...repetition, chore: chore}
-  });
-
   return (
-    <Repetitions reps={repsWithChores} />
+    <Repetitions reps={state.repetitions.filter((repetition) => repetition.UserId === state.userId)} />
   );
 }
 
