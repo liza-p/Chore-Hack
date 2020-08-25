@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";
 import { UPDATE_CHORES, UPDATE_MEMBERS } from "../../utils/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import API from "../../utils/API";
+
 
 //function to render Repeated days checkboxes
 //it takes onToggleDay callback to call when any of the checkboxes are checked 
@@ -86,7 +87,8 @@ const Chores = () => {
   console.log(state.chores)
 
   return (
-    <div>
+    <Container style={{ marginTop: 20 }}>
+        <h1>Manage Chores</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -132,7 +134,7 @@ const Chores = () => {
           })}
         </tbody>
       </Table>
-    </div>
+  </Container>
   );
 };
 
