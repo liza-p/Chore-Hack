@@ -8,6 +8,6 @@ router.route("/users").get(householdController.findMembers);
 // matches with "/api/household/invite-code"
 router.route("/invite-code").get(householdController.getInviteCode);
 // matches with "/api/household/join"
-router.route("/join").get(householdController.joinHousehold);
+router.route("/join").put(householdController.joinHousehold);
 
 module.exports = router;
