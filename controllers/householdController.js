@@ -52,7 +52,7 @@ module.exports = {
 
   joinHousehold(req, res) {
     console.log("Invite code", req.query.invite)
-    console.log("User ID", req.query.userId);
+    console.log("User ID", req.user.id);
     db.Household.findOne({ where: { invite_code: req.query.invite } })
       .then(household => {
         if (!household) {
@@ -62,7 +62,7 @@ module.exports = {
         return db.User.update({
           HouseholdId: household.id,
         }, {
-          where: { id: req.query.userId }
+          where: { id: req.user.id }
         })
       })
       .then(() => res.status(200).end())
