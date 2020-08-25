@@ -22,6 +22,13 @@ const RepeatedDays = ({ repeatedDays, onToggleDay }) => {
 
   );
 }
+//function to format due_date data from the mySQL timestamp to normal date
+const formatDate = (timestamp) =>{
+  if(!timestamp){
+    return "";
+  }
+  return (new Date(timestamp)).toDateString();
+}
 
 const Chores = () => {
   const [state, dispatch] = useChoreContext();
@@ -80,6 +87,8 @@ const Chores = () => {
     loadChores();
   }, []);
 
+  // console.log(state.chores)
+
   return (
     <div>
       <Table striped bordered hover>
@@ -118,7 +127,7 @@ const Chores = () => {
                 <td>{
                   chore.repeats
                     ? ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"].filter((day, i) => chore.repeated_days[i]).join(', ')
-                    : null
+                    : formatDate(chore.Repetitions[0]?.due_date)
                 }</td>
                 <td>{user.name}</td>
                 <td><button className="btn btn-danger" onClick={() => removeChore(chore.id)}>X</button></td>

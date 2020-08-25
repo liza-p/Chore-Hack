@@ -4,6 +4,7 @@ module.exports = {
 
   findAll(req, res) {
     db.Chore.findAll({
+      include: [db.Repetition],
       where: {
         HouseholdId: req.user.HouseholdId,
         active: true,
