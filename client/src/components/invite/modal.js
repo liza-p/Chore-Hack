@@ -2,11 +2,12 @@ import React, { Component, useRef, useState } from "react";
 import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 import './style.css';
 import API from '../../utils/API';
-
-
+import { useChoreContext } from "../../utils/GlobalState";
+import refreshUserData from "../../utils/refreshUserData";
 
 function JoinBtn() {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useChoreContext()[1];
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -15,17 +16,13 @@ function JoinBtn() {
   const handleClick = () => {
     API.joinHousehold(inviteRef.current.value)
       .then(() => {
+        refreshUserData(dispatch);
         closeModal();
-      }
-      )
+      })
       .catch(err => {
         console.log(err)
-      }
-
-      )
-
+      })
   };
-
 
   return (
     <>
