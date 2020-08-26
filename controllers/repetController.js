@@ -10,8 +10,10 @@ module.exports = {
           HouseholdId: req.user.HouseholdId,
           active: true,
         }
-      }], 
-      
+      }],
+      order: [
+        ['due_date', 'ASC'],
+      ]
     })
       .then(data => res.json(
         data.map(row => row.dataValues)
