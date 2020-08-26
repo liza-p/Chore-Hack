@@ -5,9 +5,9 @@ import { darken, fade, lighten } from '@material-ui/core/styles/colorManipulator
 import Typography from '@material-ui/core/Typography';
 import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
 import classNames from 'clsx';
+import API from '../../utils/API';
 import { Container } from "react-bootstrap";
 import "./demo.css";
-
 
 import {
   Scheduler,
@@ -29,8 +29,8 @@ const appointments = [
   {
     id: 9,
     title: 'August Event',
-    // startDate: new Date(2020, 7, 23, 11, 0),
-    // endDate: new Date(2020, 7, 23, 12, 0),
+    startDate: new Date(2020, 7, 23, 11, 0),
+    endDate: new Date(2020, 7, 23, 12, 0),
     allDay: true,
     ownerId: 3,
   },
@@ -41,7 +41,7 @@ const appointments = [
     endDate: new Date(2020, 8, 23, 12, 0),
     allDay: true,
     ownerId: 5,
-  },{
+  }, {
     id: 11,
     title: 'January Event',
     startDate: new Date(2021, 0, 23, 11, 0),
@@ -49,7 +49,7 @@ const appointments = [
     allDay: true,
     ownerId: 5,
   },
- {    
+  {
     id: 15,
     title: 'August Event 2',
     startDate: new Date(2020, 7, 23, 0, 0),
@@ -57,7 +57,7 @@ const appointments = [
     allDay: true,
     ownerId: 3,
   },
-  {    
+  {
     id: 12,
     title: 'August Event 3',
     startDate: new Date(2020, 7, 23, 11, 0),
@@ -65,10 +65,11 @@ const appointments = [
     allDay: true,
     ownerId: 2,
   },
-  
+
 ];
 
 const owners = [
+  // {state.members.map((member, i) => <option value={member.id} key={i}>{member.name}</option>)}
   {
     text: 'Sierra',
     id: 1,
@@ -104,7 +105,7 @@ const getBorder = theme => (`1px solid ${
   theme.palette.type === 'light'
     ? lighten(fade(theme.palette.divider, 1), 0.88)
     : darken(fade(theme.palette.divider, 1), 0.68)
-}`);
+  }`);
 
 const DayScaleCell = props => (
   <MonthView.DayScaleCell {...props} style={{ textAlign: 'center', fontWeight: 'bold' }} />
@@ -266,10 +267,35 @@ export default class Demo extends React.PureComponent {
     super(props);
 
     this.state = {
-      data: appointments,
+      // data: appointments,
+      data: []
     };
 
     this.commitChanges = this.commitChanges.bind(this);
+  }
+  componentDidMount() {
+    var self = this;
+    API.getAllHouseholdChores().then(resp => { 
+
+
+      var choresApt = resp.data.map(chore => ({
+        id: chore.Repetitions[0].ChoreId,
+        title: chore.chore,
+        startDate: new Date(chore.Repetitions[0].due_date),
+        endDate: new Date (new Date(chore.Repetitions[0].due_date).setHours(new Date (chore.Repetitions[0].due_date).getHours()+1)),
+        ownerId: chore.UserId ,
+
+
+      }))
+      console.log(choresApt, appointments);
+      // self.setState({ data: appointments })
+      self.setState({data:choresApt});
+      })
+    
+    // setTimeout(function () {
+      // self.setState({ data: appointments })
+    // }, 3000)
+    // console.log("updated")
   }
 
   // #FOLD_BLOCK
