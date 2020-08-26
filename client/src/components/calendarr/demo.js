@@ -279,10 +279,10 @@ export default class Demo extends React.PureComponent {
 
 
       var choresApt = resp.data.map(chore => ({
-        id: chore.Repetitions[0].ChoreId,
+        id: chore.Repetitions[0]?.ChoreId,
         title: chore.chore,
-        startDate: new Date(chore.Repetitions[0].due_date),
-        endDate: new Date (new Date(chore.Repetitions[0].due_date).setHours(new Date (chore.Repetitions[0].due_date).getHours()+1)),
+        startDate: new Date(chore.Repetitions[0]?.due_date),
+        endDate: new Date (new Date(chore.Repetitions[0]?.due_date).setHours(new Date (chore.Repetitions[0]?.due_date).getHours()+1)),
         ownerId: chore.UserId ,
 
 
