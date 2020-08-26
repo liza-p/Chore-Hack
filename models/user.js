@@ -22,6 +22,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // color to use in calendar and such
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "#007bff",
+    }
   });
   User.associate = function (models) {
     User.belongsTo(models.Household, {
