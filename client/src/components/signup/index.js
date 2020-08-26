@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
-// import { ADD_USER } from '../../utils/actions';
 import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 import { Card } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";
 import refreshUserData from "../../utils/refreshUserData";
 
-function SignUpForm({ refreshUserData }) {
+function SignUpForm() {
     const dispatch = useChoreContext()[1];
 
     const nameRef = useRef();

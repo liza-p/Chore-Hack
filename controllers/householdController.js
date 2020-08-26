@@ -51,24 +51,31 @@ module.exports = {
   },
 
   joinHousehold(req, res) {
-    console.log("Invite code", req.query.invite)
-    console.log("User ID", req.user.id);
-    db.Household.findOne({ where: { invite_code: req.query.invite } })
-      .then(household => {
-        if (!household) {
-          console.log("Incorect Invite Code")
-          res.status(401).end();
-        }
-        return db.User.update({
-          HouseholdId: household.id,
-        }, {
-          where: { id: req.user.id }
+      if (!req.user) {
+        return res.status(401).end(); // not logged in
+      }
+      db.Household.findOne({ where: { invite_code: req.query.invite } })
+        .then(household => {
+          if (!household) {
+            res.status(403).end(); // incorrect invite code
+          } else {
+            db.User.update({
+              HouseholdId: household.id,
+            }, {
+              where: { id: req.user.id }
+            })
+              .then(() => {
+                res.status(200).end(); // success
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).end(); // unknown error when trying to change user household
+              });
+          }
         })
-      })
-      .then(() => res.status(200).end())
-      .catch(err => {
-        console.log(err);
-        res.status(500).end();
-      });
+        .catch(err => {
+          console.log(err);
+          res.status(500).end(); // unknown error when tryiing to find household
+        });
   }
 }
