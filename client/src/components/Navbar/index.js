@@ -3,16 +3,17 @@ import { NavLink, Link, Redirect } from "react-router-dom";
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";
+import refreshUserData from "../../utils/refreshUserData";
 
-function Navbar({ refreshUserData }) {
-    const state = useChoreContext()[0];
+function Navbar() {
+    const [state, dispatch] = useChoreContext();
     const [redirect, setRedirect] = useState();
 
     const handleLogout = () => {
         console.log(redirect);
         API.logout()
             .then(() => {
-                refreshUserData(); // update login status
+                refreshUserData(dispatch); // update login status
                 setRedirect("/login");
             })
             .catch(err => console.log(err));

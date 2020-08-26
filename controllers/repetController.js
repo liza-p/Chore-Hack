@@ -10,8 +10,10 @@ module.exports = {
           HouseholdId: req.user.HouseholdId,
           active: true,
         }
-      }], 
-      
+      }],
+      order: [
+        ['due_date', 'ASC'],
+      ]
     })
       .then(data => res.json(
         data.map(row => row.dataValues)
@@ -24,7 +26,7 @@ module.exports = {
 
   update(req, res) {
     db.Repetition.update({
-      due_date: req.body.due_date,
+      //due_date: req.body.due_date,
       complete: req.body.complete,
     }, {
       where: { id: req.query.id }
