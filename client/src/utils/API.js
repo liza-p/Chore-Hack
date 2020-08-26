@@ -35,6 +35,9 @@ export default {
     return axios.get("/api/repetitions");
   },
   joinHousehold: function (inviteCode){
-return axios.put("/api/household/join?invite=" + inviteCode);
+    return axios.put("/api/household/join?invite=" + inviteCode);
+  },
+  completeRepetition: function(repetitionId, complete){
+    return axios.put("/api/repetitions?id="+ repetitionId, {complete})
   }
 };

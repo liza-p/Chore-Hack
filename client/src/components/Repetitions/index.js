@@ -19,7 +19,7 @@ function Repetitions (props) {
     {props.reps.map((rep) => {
       const user = state.members.find((user) => user.id === rep.Chore?.UserId);
       return (
-        <div key={rep.id} className="mb-3">
+        <div key={rep.id} className={`mb-3 ${rep.complete ? 'rep-complete' : ''}`}>
         <Form.Check 
             type= 'checkbox'
             label={
@@ -29,6 +29,8 @@ function Repetitions (props) {
                 <span className='rep-date ml-2'>{formatDate(rep.due_date)}</span>
               </span>
             }
+            checked={rep.complete}
+            onClick={e => props.onComplete(rep.id, e.target.checked)}
         />
         </div>
         
