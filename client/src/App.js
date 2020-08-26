@@ -8,89 +8,23 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
-import API from "./utils/API";
 import { useChoreContext } from "./utils/GlobalState";
-import {
-  UPDATE_USERNAME,
-  UPDATE_HOUSEHOLD,
-  UPDATE_MEMBERS,
-  UPDATE_CHORES,
-  // UPDATE_REPETITIONS,
-} from './utils/actions';
+import refreshUserData from "./utils/refreshUserData";
 
 function App() {
   const dispatch = useChoreContext()[1];
 
-  const refreshUserData = () => {
-    // set username
-    API.getUserData()
-      .then(response => {
-        dispatch({type: UPDATE_USERNAME, 
-          username: response.data.name,
-          userId: response.data.id
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({type: UPDATE_USERNAME, username: "", userId: null});
-      })
-
-    // set household info
-    API.getHouseholdInfo()
-      .then(response => {
-        console.log(response);
-        dispatch({ 
-          type: UPDATE_HOUSEHOLD, 
-          household: response.data.name, 
-          inviteCode: response.data.invite_code,
-        });
-        dispatch({ 
-          type: UPDATE_MEMBERS, 
-          members: response.data.members,
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ 
-          type: UPDATE_HOUSEHOLD, 
-          household: null, 
-          inviteCode: null,
-        });
-        dispatch({ 
-          type: UPDATE_MEMBERS, 
-          members: [],
-        });
-      })
-  }
-
-  const loadChores = () => {
-    API.getAllHouseholdChores()
-      .then(res => {
-        dispatch({ type: UPDATE_CHORES, chores: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ type: UPDATE_CHORES, chores: [] });
-      });
-  };
-
   // load user data on app load
-  useEffect(refreshUserData, []);
-
-  useEffect(loadChores, []);
+  useEffect(() => refreshUserData(dispatch), [dispatch]);
 
   return (
     <Router>
-      <Navbar refreshUserData={refreshUserData} />
+      <Navbar />
         <div>
           <Switch>
             <Redirect exact path="/" to="/login" />
-            <Route exact path="/signup">
-              <SignUp refreshUserData={refreshUserData} />
-            </Route>
-            <Route exact path="/login">
-              <Login refreshUserData={refreshUserData} />
-            </Route>
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/household" component={Household} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/chores" component={Chores} />

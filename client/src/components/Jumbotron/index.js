@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 // import { Link } from "react-router-dom";
 import { Jumbotron, InputGroup, Toast, FormControl, Button } from "react-bootstrap";
-import "./style.css";
+import "./Jumbotron.css";
 import { useChoreContext } from "../../utils/GlobalState";
 import JoinBtn from "../Invite/modal";
 
@@ -25,7 +25,7 @@ function Code() {
             <h1> {state.household} <span className="icon"><i className="fas fa-house-user"></i></span></h1>
             <div>
                 <br />
-                <InputGroup className="mb-3 w-50 mx-auto" >
+                <InputGroup className="mb-3 w-50 mx-auto" id="header-title" >
                     <InputGroup.Prepend >
                     </InputGroup.Prepend>
                     <FormControl
@@ -47,9 +47,9 @@ function Code() {
                     }
                 </InputGroup>
                 <JoinBtn />
-                <h5>Join a different Household</h5>
+                <h5 className="join-household" >Join a different Household</h5>
                 <br />
-                <h2>Members</h2>
+                <h2 className="members-header" >Members</h2>
             </div>
         </Jumbotron>
     );
