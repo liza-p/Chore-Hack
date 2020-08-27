@@ -26,46 +26,14 @@ import Home from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 
 const appointments = [
-  {
-    id: 9,
-    title: 'August Event',
-    startDate: new Date(2020, 7, 23, 11, 0),
-    endDate: new Date(2020, 7, 23, 12, 0),
-    allDay: true,
-    ownerId: 3,
-  },
-  {
-    id: 10,
-    title: 'September Event',
-    startDate: new Date(2020, 8, 23, 11, 0),
-    endDate: new Date(2020, 8, 23, 12, 0),
-    allDay: true,
-    ownerId: 5,
-  }, {
-    id: 11,
-    title: 'January Event',
-    startDate: new Date(2021, 0, 23, 11, 0),
-    endDate: new Date(2021, 0, 23, 12, 0),
-    allDay: true,
-    ownerId: 5,
-  },
-  {
-    id: 15,
-    title: 'August Event 2',
-    startDate: new Date(2020, 7, 23, 0, 0),
-    endDate: new Date(2020, 7, 23, 23, 59),
-    allDay: true,
-    ownerId: 3,
-  },
-  {
-    id: 12,
-    title: 'August Event 3',
-    startDate: new Date(2020, 7, 23, 11, 0),
-    endDate: new Date(2020, 7, 23, 12, 0),
-    allDay: true,
-    ownerId: 2,
-  },
-
+  // {
+  //   id: 9,
+  //   title: 'August Event',
+  //   startDate: new Date(2020, 7, 23, 11, 0),
+  //   endDate: new Date(2020, 7, 23, 12, 0),
+  //   allDay: true,
+  //   ownerId: 3,
+  // },
 ];
 
 const owners = [
@@ -217,7 +185,7 @@ const CellBase = React.memo(({
   otherMonth,
   // #FOLD_BLOCK
 }) => {
-  const iconId = Math.abs(Math.floor(Math.sin(startDate.getDate()) * 10) % 3);
+  // const iconId = Math.abs(Math.floor(Math.sin(startDate.getDate()) * 10) % 3);
   const isFirstMonthDay = startDate.getDate() === 1;
   const formatOptions = isFirstMonthDay
     ? { day: 'numeric', month: 'long' }
@@ -276,7 +244,7 @@ export default class Demo extends React.PureComponent {
   componentDidMount() {
     var self = this;
     API.getAllHouseholdChores().then(resp => { 
-
+// create empty array and map through repititions (then you will do the set state on this new array)
 
       var choresApt = resp.data.map(chore => ({
         id: chore.Repetitions[0]?.ChoreId,
@@ -291,12 +259,20 @@ export default class Demo extends React.PureComponent {
       // self.setState({ data: appointments })
       self.setState({data:choresApt});
       })
+
+      // API.getMembers ().then (resp => ({
+      //   var memColor = resp.data.map(color => ({
+      //     id: color.User[0]?.ColorId,
+      //     title: user.UserId,
+      //     color: user.color
     
     // setTimeout(function () {
       // self.setState({ data: appointments })
     // }, 3000)
     // console.log("updated")
   }
+
+
 
   // #FOLD_BLOCK
   commitChanges({ added, changed, deleted }) {
