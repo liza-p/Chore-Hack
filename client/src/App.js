@@ -12,7 +12,7 @@ import { useChoreContext } from "./utils/GlobalState";
 import refreshUserData from "./utils/refreshUserData";
 
 function App() {
-  const dispatch = useChoreContext()[1];
+  const [state, dispatch] = useChoreContext();
 
   // load user data on app load
   useEffect(() => refreshUserData(dispatch), [dispatch]);
@@ -21,14 +21,24 @@ function App() {
     <Router>
       <Navbar />
         <div>
-          <Switch>
-            <Redirect exact path="/" to="/login" />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/household" component={Household} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/chores" component={Chores} />
-          </Switch>
+          {
+            // check if the user is logged in
+            state.username ?
+              // in the case where the user is logged in, reroute away fron login or signup
+              <Switch>
+                <Redirect exact path={["/", "/signup", "/login"]} to="/dashboard" />
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/household" component={Household} />
+                <Route exact path="/chores" component={Chores} />
+              </Switch> :
+              // in the case where the user is not logged in, reroute to login
+              <Switch>
+                <Redirect exact path={["/", "/dashboard", "/household", "/chores"]} to="/login" />
+                <Redirect exact path="/" to="/login" />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={SignUp} />
+              </Switch>
+          }
         </div>
         <Footer/>
     </Router>
