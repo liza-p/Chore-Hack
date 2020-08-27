@@ -71,6 +71,6 @@ Then open in your preferred text editor:
 
 ### [Ayla Dillis](https://github.com/ayladillis)
 - [LinkedIn](https://www.linkedin.com/in/ayladillis/)
-- [Portfolio](https://polar-falls-52203.herokuapp.com/)
+- [Portfolio](https://react-portfolio-ad.herokuapp.com/)
 - [Highlighted-Work](https://ayladillis.github.io/Coding-Bootcamp-Project-1-Zillow-Maps-API-AD/)
 - email: aayladillis@gmail.com
