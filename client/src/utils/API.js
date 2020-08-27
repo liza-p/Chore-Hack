@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-  signup: function(name, email, password) {
-    return axios.post("/api/users/signup", { name, email, password });
+  signup: function(name, email, password, color) {
+    return axios.post("/api/users/signup", { name, email, password, color });
   },
   login: function(email, password) {
     return axios.post("/api/users/login", { email, password });

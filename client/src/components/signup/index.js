@@ -6,8 +6,12 @@ import API from "../../utils/API";
 import { Card } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";
 import refreshUserData from "../../utils/refreshUserData";
+import { TwitterPicker } from "react-color";
 
 function SignUpForm() {
+    const [color, setColor] = useState();
+    const handleChange = color => setColor(color);
+
     const dispatch = useChoreContext()[1];
 
     const nameRef = useRef();
@@ -26,7 +30,7 @@ function SignUpForm() {
             return;
         }
 
-        API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
+        API.signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value, color.hex)
             .then(response => {
                 setError(null);
                 console.log(response);
@@ -61,6 +65,11 @@ function SignUpForm() {
                                     <label htmlFor="inputName">Display Name</label>
                                     <input type="text" className="form-control" id="inputName" aria-describedby="nameHelp" ref={nameRef} />
                                     <small id="nameHelp" className="form-text text-muted">This will be visible to members of your household.</small>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="inputName">Display Color</label>
+                                    <TwitterPicker color={color} onChangeComplete={handleChange}/>
+                                    <small id="nameHelp" className="form-text text-muted">This will be your color for calendar and chore events</small>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="inputEmail">Email Address</label>

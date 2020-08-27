@@ -2,6 +2,7 @@ const db = require("../models")
 
 module.exports = {
   signup(req, res) {
+    console.log(req.body)
     db.Household.create({
       name: req.body.name + "'s Household"
     })
@@ -10,7 +11,8 @@ module.exports = {
           name: req.body.name,
           email: req.body.email,
           password: req.body.password,
-          HouseholdId: newHousehold.id
+          HouseholdId: newHousehold.id,
+          color: req.body.color
         });
       })
       .then(() => {

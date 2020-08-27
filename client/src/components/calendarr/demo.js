@@ -247,10 +247,10 @@ export default class Demo extends React.PureComponent {
 // create empty array and map through repititions (then you will do the set state on this new array)
 
       var choresApt = resp.data.map(chore => ({
-        id: chore.Repetitions[0].ChoreId,
+        id: chore.Repetitions[0]?.ChoreId,
         title: chore.chore,
-        startDate: new Date(chore.Repetitions[0].due_date),
-        endDate: new Date (new Date(chore.Repetitions[0].due_date).setHours(new Date (chore.Repetitions[0].due_date).getHours()+1)),
+        startDate: new Date(chore.Repetitions[0]?.due_date),
+        endDate: new Date (new Date(chore.Repetitions[0]?.due_date).setHours(new Date (chore.Repetitions[0]?.due_date).getHours()+1)),
         ownerId: chore.UserId ,
 
 
@@ -259,12 +259,20 @@ export default class Demo extends React.PureComponent {
       // self.setState({ data: appointments })
       self.setState({data:choresApt});
       })
+
+      // API.getMembers ().then (resp => ({
+      //   var memColor = resp.data.map(color => ({
+      //     id: color.User[0]?.ColorId,
+      //     title: user.UserId,
+      //     color: user.color
     
     // setTimeout(function () {
       // self.setState({ data: appointments })
     // }, 3000)
     // console.log("updated")
   }
+
+
 
   // #FOLD_BLOCK
   commitChanges({ added, changed, deleted }) {
