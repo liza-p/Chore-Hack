@@ -11,7 +11,7 @@ function BarChart () {
   for ( var i = 0; i < state.members.length; i++){
     completedChores[state.members[i].id]=0
   };
-  for (var i = 0; i < state.repetitions.length; i++){
+  for ( i = 0; i < state.repetitions.length; i++){
     if(state.repetitions[i].complete){
       completedChores[state.repetitions[i].UserId]++;
     };
@@ -19,7 +19,7 @@ function BarChart () {
   console.log(completedChores);
 
 const data = {
-  labels: [state.username],
+  labels: state.members.map(member => member.name),
 
   datasets: [
     {
@@ -29,7 +29,7 @@ const data = {
       borderWidth: 1,
       hoverBackgroundColor: '#33B2FF ',
       hoverBorderColor: '#007bff',
-      data: [ ]
+      data: state.members.map(member => completedChores[member.id])
     }
   ]
 };
