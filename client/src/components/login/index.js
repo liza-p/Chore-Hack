@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import "./Login.css";
 import { Link } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
@@ -49,7 +49,6 @@ const LoginForm = () => {
         <Card className="text-white rounded-0" style={{ margin: '0px' }}>
             <Card.Img src={process.env.PUBLIC_URL + "/img/hero-img2.jpg"} alt="Card image" />
             <Card.ImgOverlay>
-                {/* <Card.Text> */}
                     <Card body style={{ opacity: 0.9, marginTop: '120px', marginLeft: '90px', marginRight: '90px' }}>
                     <form className="m-3 mt-3 rounded" >
                         <ErrorMessage message={error} />
@@ -65,7 +64,6 @@ const LoginForm = () => {
                         <div className="mt-2"><Link to="/signup">New user? Sign up</Link></div>
                     </form>
                     </Card >
-                {/* </Card.Text> */}
             </Card.ImgOverlay>
         </Card>
     )

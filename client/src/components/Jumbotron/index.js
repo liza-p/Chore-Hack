@@ -8,7 +8,7 @@ import JoinBtn from "../Invite/modal";
 
 function Code() {
     const state = useChoreContext()[0];
-    const [copySuccess, setCopySuccess] = useState('');
+    const [ setCopySuccess ] = useState('');
     const textAreaRef = useRef(null);
     const [show, setShow] = useState(false);
     function copyToClipboard(e) {

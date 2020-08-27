@@ -1,11 +1,26 @@
 import React from 'react';
 import {HorizontalBar} from 'react-chartjs-2';
 import "./style.css"
+import { useChoreContext } from "../../utils/GlobalState";
+
 
 function BarChart () {
+  const [state, dispatch] = useChoreContext();
+  const completedChores = {}
+
+  for ( var i = 0; i < state.members.length; i++){
+    completedChores[state.members[i].id]=0
+  };
+  for (var i = 0; i < state.repetitions.length; i++){
+    if(state.repetitions[i].complete){
+      completedChores[state.repetitions[i].UserId]++;
+    };
+  };
+  console.log(completedChores);
 
 const data = {
-  labels: ['Sierra', 'Liza', 'Hannah', 'Ayla'],
+  labels: [state.username],
+
   datasets: [
     {
       label: 'Chores Completed',
@@ -14,7 +29,7 @@ const data = {
       borderWidth: 1,
       hoverBackgroundColor: '#33B2FF ',
       hoverBorderColor: '#007bff',
-      data: [65, 59, 80, 81, 56, 55, 40]
+      data: [ ]
     }
   ]
 };
@@ -27,8 +42,6 @@ const data = {
       </div>
     )
     
-
-// });
     }
 
 export default BarChart;
