@@ -18,7 +18,6 @@ function SignUpForm() {
     const emailRef = useRef();
     const passwordRef = useRef();
 
-    const [redirect, setRedirect] = useState();
     const [error, setError] = useState(null);
 
     const handleSubmit = event => {
@@ -35,7 +34,6 @@ function SignUpForm() {
                 setError(null);
                 console.log(response);
                 refreshUserData(dispatch);
-                setRedirect("/household");
             })
             .catch(err => {
                 if (!err.response) {
@@ -53,7 +51,7 @@ function SignUpForm() {
     }
 
     return (
-        redirect ? <Redirect to={redirect} /> :
+       
             <Card className="text-white rounded-0" style={{ margin: '0px' }}>
                 <Card.Img src={process.env.PUBLIC_URL + "/img/hero-img.jpg"} alt="Card image" />
                 <Card.ImgOverlay className="rounded-0">

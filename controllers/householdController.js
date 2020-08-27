@@ -32,7 +32,8 @@ module.exports = {
       .then(data => res.json(
         data.map((row) => ({
           id: row.dataValues.id,
-          name: row.dataValues.name
+          name: row.dataValues.name,
+          color: row.dataValues.color,
         }))
       ))
       .catch(err => {

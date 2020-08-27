@@ -51,5 +51,24 @@ module.exports = {
     } else {
       res.json(""); // no user is logged in
     }
+  },
+
+  updateColor(req, res) {
+    if (!req.user) {
+      return res.status(401).end(); // not logged in
+    }
+
+    db.User.update({
+      color: req.query.color
+    }, {
+      where: { id: req.user.id }
+    })
+      .then(() => {
+        res.status(200).end();
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).end();
+      });
   }
 }

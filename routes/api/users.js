@@ -8,4 +8,6 @@ router.post("/login", passport.authenticate("local"), usersController.login);
 router.get("/logout", usersController.logout);
 router.get("/", usersController.getUserData); // for seeing who is logged in
 
+router.put("/color", usersController.updateColor);
+
 module.exports = router;
