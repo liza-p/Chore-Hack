@@ -26,7 +26,8 @@ function App() {
             state.username ?
               // in the case where the user is logged in, reroute away fron login or signup
               <Switch>
-                <Redirect exact path={["/", "/signup", "/login"]} to="/dashboard" />
+                <Redirect exact path={["/", "/login"]} to="/dashboard" />
+                <Redirect exact path="/signup" to="/household" />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/household" component={Household} />
                 <Route exact path="/chores" component={Chores} />
