@@ -127,7 +127,7 @@ const Chores = () => {
                     ? ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"].filter((day, i) => chore.repeated_days[i]).join(', ')
                     : formatDate(chore.Repetitions[0]?.due_date)
                 }</td>
-                <td>{user.name}</td>
+                <td>{user?.name}</td>
                 <td><button className="btn btn-danger" onClick={() => removeChore(chore.id)}>X</button></td>
               </tr>
             );
