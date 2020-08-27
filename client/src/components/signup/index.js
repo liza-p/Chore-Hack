@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-// import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
 import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
