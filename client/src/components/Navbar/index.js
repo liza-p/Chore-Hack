@@ -7,25 +7,16 @@ import refreshUserData from "../../utils/refreshUserData";
 
 function Navbar() {
     const [state, dispatch] = useChoreContext();
-    const [redirect, setRedirect] = useState();
 
     const handleLogout = () => {
-        console.log(redirect);
         API.logout()
             .then(() => {
                 refreshUserData(dispatch); // update login status
-                setRedirect("/login");
             })
             .catch(err => console.log(err));
     }
 
-    // reset redirect string after every redirect
-    useEffect(() => {
-        setRedirect(undefined);
-    }, [redirect]);
-
     return (
-        redirect ? <Redirect to={redirect} /> :
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link className="navbar-brand" to="/">
                 <img src="../img/project3.png" style={{ width: "45px", height: "45px" }} className="d-inline-block" alt="" />
