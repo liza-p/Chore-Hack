@@ -62,8 +62,7 @@ const LoginForm = () => {
                             <input type="password" className="form-control" id="exampleInputPassword1" ref={passwordRef} />
                         </div>
                         <button className="btn btn-primary" onClick={event => handleSubmit(event)}>Login</button>
-                        <br></br>
-                        <Link to="/signup">New user? Sign up</Link>
+                        <div className="mt-2"><Link to="/signup">New user? Sign up</Link></div>
                     </form>
                     </Card >
                 {/* </Card.Text> */}
