@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-// import { Link } from "react-router-dom";
 import { Jumbotron, InputGroup, Toast, FormControl, Button } from "react-bootstrap";
 import "./Jumbotron.css";
 import { useChoreContext } from "../../utils/GlobalState";
@@ -8,14 +7,12 @@ import JoinBtn from "../Invite/modal";
 
 function Code() {
     const state = useChoreContext()[0];
-    const [copySuccess, setCopySuccess] = useState('');
     const textAreaRef = useRef(null);
     const [show, setShow] = useState(false);
     function copyToClipboard(e) {
         textAreaRef.current.select();
         document.execCommand('copy');
-        e.target.focus();npm
-        setCopySuccess('Copied!');
+        e.target.focus();
         setShow(true);
     };
 

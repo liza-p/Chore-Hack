@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, Link, Redirect } from "react-router-dom";
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";

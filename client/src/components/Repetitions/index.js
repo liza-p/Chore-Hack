@@ -24,7 +24,7 @@ function Repetitions (props) {
             type= 'checkbox'
             label={
               <span>
-                <span class="badge badge-pill badge-primary mr-1">{user?.name}</span>
+                <span className="badge badge-pill badge-primary mr-1">{user?.name}</span>
                 {rep.Chore?.chore} 
                 <span className='rep-date ml-2'>{formatDate(rep.due_date)}</span>
               </span>
