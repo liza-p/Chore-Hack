@@ -259,6 +259,16 @@ export default class Demo extends React.PureComponent {
       // self.setState({ data: appointments })
       self.setState({data:choresApt});
       })
+      API.getMembers().then(resp => {
+        var ownerColor = resp.data.map (color => ({
+          text: user.name,
+          id: user.id,
+          color: user.color,
+        }))
+        console.log(ownerColor, owners);
+        self.setState({data:ownerColor});
+      })
+      }
 
       // API.getMembers ().then (resp => ({
       //   var memColor = resp.data.map(color => ({
