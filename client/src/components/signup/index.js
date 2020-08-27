@@ -1,14 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import "./SignUp.css";
-// import { ADD_USER } from '../../utils/actions';
 import ErrorMessage from "../ErrorMessage";
 import API from "../../utils/API";
 import { Card } from 'react-bootstrap';
+import { useChoreContext } from "../../utils/GlobalState";
+import refreshUserData from "../../utils/refreshUserData";
 
+function SignUpForm() {
+    const dispatch = useChoreContext()[1];
 
-
-function SignUpForm({ refreshUserData }) {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -29,7 +30,7 @@ function SignUpForm({ refreshUserData }) {
             .then(response => {
                 setError(null);
                 console.log(response);
-                refreshUserData();
+                refreshUserData(dispatch);
                 setRedirect("/household");
             })
             .catch(err => {
