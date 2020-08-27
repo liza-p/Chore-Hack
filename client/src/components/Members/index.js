@@ -29,8 +29,8 @@ const Members = () => {
                             return (
                                 <tr key={member.id}>
                                     <td>
-                                        {/* <button className = "is-primary" onClick={TwitterPicker}></button> */}
-                                        <TwitterPicker/>
+                                        <div style = {{height: 16, width:16, backgroundColor: member.color}}></div>
+                                        {/* {member.color} */}
                                         </td> 
                         
                                     <td>{member.name}</td>
