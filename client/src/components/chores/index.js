@@ -12,15 +12,8 @@ import API from "../../utils/API";
 const RepeatedDays = ({ repeatedDays, onToggleDay }) => {
   return (
     <div className="row">
-      <div className="col-auto px-2">Mo<input type="checkbox" checked={repeatedDays[0]} onChange={(e) => onToggleDay(0, e.target.checked)} /></div>
-      <div className="col-auto px-2">Tu<input type="checkbox" checked={repeatedDays[1]} onChange={(e) => onToggleDay(1, e.target.checked)} /></div>
-      <div className="col-auto px-2">We<input type="checkbox" checked={repeatedDays[2]} onChange={(e) => onToggleDay(2, e.target.checked)} /></div>
-      <div className="col-auto px-2">Th<input type="checkbox" checked={repeatedDays[3]} onChange={(e) => onToggleDay(3, e.target.checked)} /></div>
-      <div className="col-auto px-2">Fr<input type="checkbox" checked={repeatedDays[4]} onChange={(e) => onToggleDay(4, e.target.checked)} /></div>
-      <div className="col-auto px-2">Sa<input type="checkbox" checked={repeatedDays[5]} onChange={(e) => onToggleDay(5, e.target.checked)} /></div>
-      <div className="col-auto px-2">Su<input type="checkbox" checked={repeatedDays[6]} onChange={(e) => onToggleDay(6, e.target.checked)} /></div>
+      {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day, i) => <div className="col-auto px-2">{day}<input type="checkbox" checked={repeatedDays[i]} onChange={(e) => onToggleDay(i, e.target.checked)} /></div>)}
     </div>
-
   );
 }
 //function to format due_date data from the mySQL timestamp to normal date
@@ -124,7 +117,7 @@ const Chores = () => {
                 <td>{chore.repeats ? "Yes" : "No"}</td>
                 <td>{
                   chore.repeats
-                    ? ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"].filter((day, i) => chore.repeated_days[i]).join(', ')
+                    ? ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"].filter((day, i) => chore.repeated_days[i]).join(', ')
                     : formatDate(chore.Repetitions[0]?.due_date)
                 }</td>
                 <td>{user?.name}</td>
