@@ -14,7 +14,7 @@ function Code() {
     function copyToClipboard(e) {
         textAreaRef.current.select();
         document.execCommand('copy');
-        e.target.focus();
+        e.target.focus();npm
         setCopySuccess('Copied!');
         setShow(true);
     };
