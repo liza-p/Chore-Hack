@@ -39,7 +39,7 @@ const appointments = [
 const owners = [
   // {state.members.map((member, i) => <option value={member.id} key={i}>{member.name}</option>)}
   {
-    text: 'Sierra',
+    text: 'Otis',
     id: 1,
     color: '#FFA726',
   }, {
@@ -236,7 +236,15 @@ export default class Demo extends React.PureComponent {
 
     this.state = {
       // data: appointments,
-      data: []
+      data: [], 
+      // {
+      //   fieldName: 'ownerId',
+      //   title: 'Owners',
+      //   instances: owners,
+      // }];
+      
+      // resources: resources
+      resources:[]
     };
 
     this.commitChanges = this.commitChanges.bind(this);
@@ -260,28 +268,26 @@ export default class Demo extends React.PureComponent {
       self.setState({data:choresApt});
       })
       API.getMembers().then(resp => {
+        // console.log("members", resp);
         var owners = resp.data.map (user => ({
           text: user.name,
           id: user.id,
           color: user.color,
         }))
         console.log(owners);
-        self.setState({data:owners});
+        self.setState({resources:[{
+          fieldName: 'ownerId',
+          title: 'Owners',
+          instances: owners,
+        }]});
       })
-      }
+      
 
-
-      // API.getMembers ().then (resp => ({
-      //   var memColor = resp.data.map(color => ({
-      //     id: color.User[0]?.ColorId,
-      //     title: user.UserId,
-      //     color: user.color
-    
     // setTimeout(function () {
-      // self.setState({ data: appointments })
+    //   self.setState({resources })
     // }, 3000)
     // console.log("updated")
-
+  }
 
 
 
@@ -305,7 +311,7 @@ export default class Demo extends React.PureComponent {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, resources } = this.state;
 
     return (
     <Container style={{ marginBottom: 20 }} >
