@@ -39,7 +39,7 @@ const appointments = [
 const owners = [
   // {state.members.map((member, i) => <option value={member.id} key={i}>{member.name}</option>)}
   {
-    text: 'Sierra',
+    text: 'Otis',
     id: 1,
     color: '#FFA726',
   }, {
@@ -236,7 +236,15 @@ export default class Demo extends React.PureComponent {
 
     this.state = {
       // data: appointments,
-      data: []
+      data: [], 
+      // {
+      //   fieldName: 'ownerId',
+      //   title: 'Owners',
+      //   instances: owners,
+      // }];
+      
+      // resources: resources
+      resources:[]
     };
 
     this.commitChanges = this.commitChanges.bind(this);
@@ -245,7 +253,7 @@ export default class Demo extends React.PureComponent {
     var self = this;
     API.getAllHouseholdChores().then(resp => { 
 // create empty array and map through repititions (then you will do the set state on this new array)
-
+      var result = [];
       var choresApt = resp.data.map(chore => ({
         id: chore.Repetitions[0]?.ChoreId,
         title: chore.chore,
@@ -255,19 +263,46 @@ export default class Demo extends React.PureComponent {
 
 
       }))
-      console.log(choresApt, appointments);
-      // self.setState({ data: appointments })
-      self.setState({data:choresApt});
-      })
+      resp.data.forEach(chore => {
+        // console.log(chore)
+        chore.Repetitions.forEach(rep =>{
+          console.log(rep);
+          result.push(
+            {
+              id: rep.ChoreId,
+              title: chore.chore,
+              startDate: new Date(rep.due_date),
+              endDate: new Date (new Date(rep.due_date).setHours(new Date (rep.due_date).getHours()+1)),
+              ownerId: chore.UserId ,  
+            }
 
-      // API.getMembers ().then (resp => ({
-      //   var memColor = resp.data.map(color => ({
-      //     id: color.User[0]?.ColorId,
-      //     title: user.UserId,
-      //     color: user.color
-    
-    // setTimeout(function () {
+
+          )
+        })
+      })
+      // console.log(choresApt, appointments);
       // self.setState({ data: appointments })
+      self.setState({data:result});
+      // self.setState({data:choresApt});
+      })
+      API.getMembers().then(resp => {
+        // console.log("members", resp);
+        var owners = resp.data.map (user => ({
+          text: user.name,
+          id: user.id,
+          color: user.color,
+        }))
+        console.log(owners);
+        self.setState({resources:[{
+          fieldName: 'ownerId',
+          title: 'Owners',
+          instances: owners,
+        }]});
+      })
+      
+
+    // setTimeout(function () {
+    //   self.setState({resources })
     // }, 3000)
     // console.log("updated")
   }
@@ -294,7 +329,7 @@ export default class Demo extends React.PureComponent {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, resources } = this.state;
 
     return (
     <Container style={{ marginBottom: 20 }} >
