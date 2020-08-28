@@ -42,11 +42,17 @@ function ToDoTable() {
     const tempFilteredReps = [];
     const today = new Date();
     today.setHours(0, 0, 0, 0); // we want to include repets due at any time today
+    const usedChores = {};
 
     for (let i = 0; i < state.repetitions.length; i++) {
-      let dueDate = new Date(state.repetitions[i].due_date);
-      if (dueDate >= today) {
-        tempFilteredReps.push(state.repetitions[i]);
+      // check if we've listed this chore yet
+      if (!usedChores[state.repetitions[i].ChoreId]) {
+        // check if the due date is in the future
+        let dueDate = new Date(state.repetitions[i].due_date);
+        if (dueDate >= today) {
+          tempFilteredReps.push(state.repetitions[i]);
+          usedChores[state.repetitions[i].ChoreId] = true;
+        }
       }
     }
 
