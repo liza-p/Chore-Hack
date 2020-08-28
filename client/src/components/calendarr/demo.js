@@ -20,7 +20,7 @@ import {
   EditRecurrenceMenu,
   Resources,
   DragDropProvider,
-  AllDayPanel,
+  // AllDayPanel,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import Home from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';

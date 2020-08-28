@@ -3,7 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const SESSION_SECRET = process.env.SESSION_SECRET || "sample secret";
 
 const app = express();
