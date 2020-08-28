@@ -25,6 +25,7 @@ const data = {
     {
       label: 'Chores Completed',
       backgroundColor: '#007bff',
+      backgroundColor: '#007bff',
       borderColor: '#007bff',
       borderWidth: 1,
       hoverBackgroundColor: '#33B2FF ',

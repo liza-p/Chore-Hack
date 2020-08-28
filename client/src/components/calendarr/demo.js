@@ -255,20 +255,21 @@ export default class Demo extends React.PureComponent {
 
 
       }))
-      console.log(choresApt, appointments);
+      // console.log(choresApt, appointments);
       // self.setState({ data: appointments })
       self.setState({data:choresApt});
       })
       API.getMembers().then(resp => {
-        var ownerColor = resp.data.map (color => ({
+        var owners = resp.data.map (user => ({
           text: user.name,
           id: user.id,
           color: user.color,
         }))
-        console.log(ownerColor, owners);
-        self.setState({data:ownerColor});
+        console.log(owners);
+        self.setState({data:owners});
       })
       }
+
 
       // API.getMembers ().then (resp => ({
       //   var memColor = resp.data.map(color => ({
@@ -280,7 +281,7 @@ export default class Demo extends React.PureComponent {
       // self.setState({ data: appointments })
     // }, 3000)
     // console.log("updated")
-  }
+
 
 
 
