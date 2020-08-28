@@ -40,9 +40,14 @@ function ToDoTable() {
   // only show a single upcoming repetition for each chore
   useEffect(() => {
     const tempFilteredReps = [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // we want to include repets due at any time today
 
     for (let i = 0; i < state.repetitions.length; i++) {
-      tempFilteredReps.push(state.repetitions[i]);
+      let dueDate = new Date(state.repetitions[i].due_date);
+      if (dueDate >= today) {
+        tempFilteredReps.push(state.repetitions[i]);
+      }
     }
 
     setFilteredReps(tempFilteredReps);
