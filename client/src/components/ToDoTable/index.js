@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import Repetitions from "../Repetitions";
 import { Tabs, Tab } from 'react-bootstrap';
 import './style.css';
@@ -9,6 +9,7 @@ import API from "../../utils/API";
 function ToDoTable() {
 
   const [state, dispatch] = useChoreContext();
+  const [filteredReps, setFilteredReps] = useState([]);
 
   const loadRepetitions =() =>{
 
@@ -36,14 +37,25 @@ function ToDoTable() {
     loadRepetitions();
   }, []);
 
+  // only show a single upcoming repetition for each chore
+  useEffect(() => {
+    const tempFilteredReps = [];
+
+    for (let i = 0; i < state.repetitions.length; i++) {
+      tempFilteredReps.push(state.repetitions[i]);
+    }
+
+    setFilteredReps(tempFilteredReps);
+  }, [state.repetitions]);
+
   return (
-    <div className="m-4 border rounded" >
+    <div className="m-4 border rounded">
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="home" title="Your Chores">
-            <UserReps onComplete={setCompleted} />
+            <UserReps onComplete={setCompleted} reps={filteredReps}/>
           </Tab>
           <Tab eventKey="profile" title="Household's Chores">
-            <HouseholdReps onComplete={setCompleted} />
+            <HouseholdReps onComplete={setCompleted} reps={filteredReps}/>
           </Tab>
         </Tabs>
     </div>
@@ -51,16 +63,15 @@ function ToDoTable() {
 }
 
 function HouseholdReps(props) {
-  const [state, dispatch] = useChoreContext();
   return (
-    <Repetitions reps={state.repetitions} onComplete={props.onComplete} />
+    <Repetitions reps={props.reps} onComplete={props.onComplete} />
   );
 }
 
 function UserReps(props) {
   const [state, dispatch] = useChoreContext();
   return (
-    <Repetitions reps={state.repetitions.filter((repetition) => repetition.UserId === state.userId)} onComplete={props.onComplete}/>
+    <Repetitions reps={props.reps.filter((repetition) => repetition.UserId === state.userId)} onComplete={props.onComplete}/>
   );
 }
 
