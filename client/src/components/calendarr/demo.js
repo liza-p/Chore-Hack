@@ -253,7 +253,7 @@ export default class Demo extends React.PureComponent {
     var self = this;
     API.getAllHouseholdChores().then(resp => { 
 // create empty array and map through repititions (then you will do the set state on this new array)
-
+      var result = [];
       var choresApt = resp.data.map(chore => ({
         id: chore.Repetitions[0]?.ChoreId,
         title: chore.chore,
@@ -263,9 +263,27 @@ export default class Demo extends React.PureComponent {
 
 
       }))
+      resp.data.forEach(chore => {
+        // console.log(chore)
+        chore.Repetitions.forEach(rep =>{
+          console.log(rep);
+          result.push(
+            {
+              id: rep.ChoreId,
+              title: chore.chore,
+              startDate: new Date(rep.due_date),
+              endDate: new Date (new Date(rep.due_date).setHours(new Date (rep.due_date).getHours()+1)),
+              ownerId: chore.UserId ,  
+            }
+
+
+          )
+        })
+      })
       // console.log(choresApt, appointments);
       // self.setState({ data: appointments })
-      self.setState({data:choresApt});
+      self.setState({data:result});
+      // self.setState({data:choresApt});
       })
       API.getMembers().then(resp => {
         // console.log("members", resp);
