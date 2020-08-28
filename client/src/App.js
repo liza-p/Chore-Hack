@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-        <div>
+        <div style={{ marginBottom: 50 }}>
           {
             // check if the user is logged in
             state.username ?
