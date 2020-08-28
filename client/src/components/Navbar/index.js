@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import { Button } from 'react-bootstrap';
 import { useChoreContext } from "../../utils/GlobalState";
 import refreshUserData from "../../utils/refreshUserData";
+import "./style.css";
 
 function Navbar() {
     const [state, dispatch] = useChoreContext();
@@ -18,8 +19,8 @@ function Navbar() {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">
-                <img src="../img/project3.png" style={{ width: "45px", height: "45px" }} className="d-inline-block" alt="" />
+            <Link className="navbar-brand p-0 logo-text" to="/">
+                <img src="../img/project3.png" style={{ height: "55px" }} className="d-inline-block logo" alt="logo" />
                 Chore Hack
             </Link>
             {

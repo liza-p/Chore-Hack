@@ -5,6 +5,7 @@ import { UPDATE_CHORES, UPDATE_MEMBERS } from "../../utils/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import API from "../../utils/API";
+import "./style.css";
 
 
 //function to render Repeated days checkboxes

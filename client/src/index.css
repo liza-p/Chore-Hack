@@ -2,3 +2,17 @@ body {
   margin: 0;
   font-family: 'GFS Neohellenic', sans-serif;
 }
+.btn-primary{
+  background-color: #5169A9;
+  border-color: #5169A9;
+}
+.btn-primary:hover{
+  background-color: #2E466F;
+  border-color:  #2E466F;
+}
+a{
+  color:  #5169A9;
+}
+a:hover{
+  color:  #2E466F;
+}
