@@ -11,7 +11,7 @@ const formatDate = (timestamp) =>{
   return (new Date(timestamp)).toDateString();
 }
 function Repetitions (props) {
-  const [state, dispatch] = useChoreContext();
+  const [ state ] = useChoreContext();
 
   console.log("Props", props.reps)
   return (
@@ -30,7 +30,7 @@ function Repetitions (props) {
               </span>
             }
             checked={rep.complete}
-            onClick={e => props.onComplete(rep.id, e.target.checked)}
+            onChange={e => props.onComplete(rep.id, e.target.checked)}
         />
         </div>
         
