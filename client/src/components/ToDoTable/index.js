@@ -63,7 +63,7 @@ function ToDoTable() {
 
   return (
     <Container style={{ marginBottom: 25 }} >
-      <div className="m-4 border rounded" >
+      <div className=" border rounded" >
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="home" title="Your Chores">
             <UserReps onComplete={setCompleted} reps={filteredReps} />

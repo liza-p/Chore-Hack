@@ -83,9 +83,9 @@ const Chores = () => {
   return (
     <Container style={{ marginTop: 20 }}>
         <h1>Manage Chores</h1>
-      <Table striped bordered hover>
+      <Table bordered hover>
         <thead>
-          <tr>
+          <tr className="tr-heared">
             <th>Chore</th>
             <th>Repeats</th>
             <th>Due on</th>
@@ -93,7 +93,7 @@ const Chores = () => {
             <th>Save</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <tr>
             <td><input className="form-control" placeholder="Add a chore" value={choreName} onChange={(e) => setChoreName(e.target.value)} /></td>
             <td style={{ width: "100px" }}><input type="checkbox" checked={repeated} onChange={(e) => setRepeated(e.target.checked)} /></td>
