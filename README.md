@@ -1,4 +1,4 @@
-# project-3
+# Chore Hack
 
 
 ![Web Screenshot]()
@@ -9,7 +9,7 @@
 - Deployed Link
 - Getting Started
 - Code Highlights
-- Technology
+- Technologies
 - Authors
 
 ## Objective
@@ -34,6 +34,24 @@ Then open in your preferred text editor:
 - [emmacs](https://www.gnu.org/software/emacs/)
 - [visual studio code](https://code.visualstudio.com/) 
 
+To install dependencies, run this command.
+
+```
+npm install
+```
+
+You will need to create the development database by running the following command in MySQL Workbench or the MySQL command line interface.
+
+```SQL
+CREATE DATABASE chore_db;
+```
+
+To start the development server, execute this command in the terminal.
+
+```
+npm start
+```
+
 ## Code Highlight
 
 
@@ -44,7 +62,7 @@ Then open in your preferred text editor:
 
 
 
-## Technology
+## Technologies
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScrip)
