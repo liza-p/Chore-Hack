@@ -55,7 +55,7 @@ npm start
 ## Code Highlight
 
 
-![Screenshot]()
+
 
 
 ![Screenshot]()
@@ -74,6 +74,9 @@ npm start
 * [Sequelize](https://sequelize.org/)
 * [Passport.js](http://www.passportjs.org/)
 * [Axios](https://www.npmjs.com/package/axios)
+* [React-Color](https://casesandberg.github.io/react-color/)
+* [React-Scheduler](https://devexpress.github.io/devextreme-reactive/react/scheduler/docs/guides/fundamentals/)
+
 
 ## Authors
 ### [Liza Poliachenko](https://github.com/liza-p)
