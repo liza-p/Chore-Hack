@@ -15,7 +15,6 @@ function BarChart () {
   };
   const now = new Date();
   let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-  tomorrow = now;
   for ( i = 0; i < state.repetitions.length; i++){
     const repetitionDate = new Date(state.repetitions[i].due_date);
     if (repetitionDate.getTime() < tomorrow.getTime() && (tomorrow.getTime() - repetitionDate.getTime()) <= 7 * 24 * 3600 * 1000) {
