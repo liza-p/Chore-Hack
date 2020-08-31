@@ -1,7 +1,7 @@
 # Chore Hack
 
 
-![Web Screenshot]()
+![Web Screenshot](./client/public/img/WireFrame1.gif)
 
 
 ## Table of Content
@@ -55,7 +55,7 @@ npm start
 ## Code Highlight
 
 
-![Screenshot]()
+![Screenshot](./client/public/img/reducer.png)
 
 
 ![Screenshot]()
