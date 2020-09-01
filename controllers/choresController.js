@@ -6,6 +6,7 @@ function generateReps(chore, year, month, startDate=1) {
   const selectedDays = JSON.parse(chore.repeated_days);
   // create initial date
   let date = new Date(year, month, startDate);
+  date.setUTCHours(8); // set an hour that has correct date with PDT and PST
   // while within the same month
   while (date.getMonth() === month) {
     // if the week day is on the list
@@ -19,6 +20,7 @@ function generateReps(chore, year, month, startDate=1) {
     }
     // increment the date
     date = new Date(year, month, date.getDate() + 1);
+    date.setUTCHours(8);
   }
 }
 
