@@ -52,15 +52,33 @@ To start the development server, execute this command in the terminal.
 npm start
 ```
 
-## Code Highlight
+## Code Highlights
 
+We keep store data on the frontend in a global state created with `useReducer`. The part of the reducer function that updates the current user's name and ID is shown below.
 
 ![Screenshot](./client/public/img/reducer.png)
 
+The information stored in the global state is used throughout the React application. One such place is in `App.js` where we handle routing using `react-router-dom`. The existance of `state.username` indicates that the user is logged in, which determines which set of routes are available.
 
-![Screenshot]()
-
-
+```jsx
+// check if the user is logged in
+state.username ?
+  // in the case where the user is logged in, reroute away fron login or signup
+  <Switch>
+    <Redirect exact path={["/", "/login"]} to="/dashboard" />
+    <Redirect exact path="/signup" to="/household" />
+    <Route exact path="/dashboard" component={Dashboard} />
+    <Route exact path="/household" component={Household} />
+    <Route exact path="/chores" component={Chores} />
+  </Switch> :
+  // in the case where the user is not logged in, reroute to login
+  <Switch>
+    <Redirect exact path={["/", "/dashboard", "/household", "/chores"]} to="/login" />
+    <Redirect exact path="/" to="/login" />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/signup" component={SignUp} />
+  </Switch>
+```
 
 ## Technologies
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
